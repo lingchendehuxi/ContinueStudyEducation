@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.util.List;
 
@@ -58,6 +60,13 @@ public class MyReceiver extends BroadcastReceiver {
 					sp.edit().putBoolean(Constant.SP_IS_LOG_OUT, false).commit();
 				}
 			}
+		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
+			Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+
+			Intent i = new Intent(context, LoginActivity.class);
+			i.putExtras(bundle);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			context.startActivity(i);
 		}
 	}
 

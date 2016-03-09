@@ -18,9 +18,6 @@ import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.bean.TeacherArrayBean;
 import cn.incongress.continuestudyeducation.uis.CircleImageView;
 
-/**
- * Created by Jacky on 2015/12/23.
- */
 public class LessonTeacherAdapter extends BaseAdapter {
     private Context mContext;
     private List<TeacherArrayBean> mTeachers;
@@ -60,7 +57,7 @@ public class LessonTeacherAdapter extends BaseAdapter {
         }
 
         holder.tvName.setText(mTeachers.get(position).getTeacherName());
-        if(mTeachers.get(position).getTeacherUrl().equals("")) {
+        if("".equals(mTeachers.get(position).getTeacherUrl())) {
             holder.civTeacher.setImageResource(R.mipmap.teacher_info_default);
         }else {
             ImageLoader.getInstance().displayImage(mTeachers.get(position).getTeacherUrl(), holder.civTeacher, new ImageLoadingListener() {

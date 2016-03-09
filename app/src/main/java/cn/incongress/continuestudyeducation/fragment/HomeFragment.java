@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
     private SwipeRefreshLayout mRefreshLayout;
     private LinearLayoutManager mLayoutManager;
     private LinearLayout mLlTopInfo;
+    private Toolbar mToolbar;
 
     private static final int DIALOG_CODE = 0x001;
 
@@ -100,6 +102,8 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
                 mTvSituationContent.setText(getString(R.string.situation3,mCourseBean.getPoint()));
             }
             mTvSituation.setText(situation);
+
+            mToolbar.setTitle(mCourseBean.getCourseName());
         }else if(target == LOAD_DATA_NO_DATA) {
             mLlTopInfo.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.GONE);
@@ -126,6 +130,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         mTvSituation = (TextView) view.findViewById(R.id.tv_situation);
         mTvSituationContent = (TextView) view.findViewById(R.id.tv_situation_content);
+        mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -139,7 +144,6 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
             }
         });
         mHandler.sendEmptyMessageDelayed(LOAD_REFRESH_SHOW, 100);
-
 		return view;
 	}
 
