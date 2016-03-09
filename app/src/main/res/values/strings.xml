@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">ContinueStudyEducation</string>
+    
+    <!-- 主页 -->
+    <string name="home_bottom_title">首页</string>
+    <string name="home_title">重症监测的患者安全</string>
+    <string name="lession_introduction">课程介绍</string>
+    <string name="learning_progress">学习进度:</string>
+    <string name="learning_progress_num">%1$s/%2$s</string>
+    <string name="use_intro">使用说明</string>
+    <string name="situation1">您尚未获取的证书资格，请完成课程学习后在网页端通过考试并完成调研，待管理员审核后即可获得证书</string>
+    <string name="situation2">考试得分为：%1$s分 \n恭喜您通过本次考试！待管理员审核通过后，即可在网页版平台下载电子证书</string>
+    <string name="situation3">考试得分为：%1$s分 \n恭喜您已获得证书资格，请至网页版平台下载电子证书！</string>
+    <string name="home_bottom_notification">通知</string>
+
+
+
+    <string name="home_title_icon">&#xf275;</string>
+    <string name="map_icon">&#xf278;</string>
+
+    <!-- Dialog -->
+    <string name="no_data">暂无数据</string>
+    <string name="plate_detail">板块详情</string>
+
+    <!-- 学习进度 -->
+    <string name="study_progress_with_percent">(当前学习进度：%1$s)</string>
+    <string name="study_end_time_with_percent">距课程结束时间  %1$s 天</string>
+    <string name="plate_attach">课件(%1$s)</string>
+    <string name="no_attach_data">暂无课件</string>
+
+    <!-- 课件学习 -->
+    <string name="attach_study">课件学习</string>
+    <string name="attach_study_tips">为了保证学习的完整性，第一次进行课件学习时，不能够进行进度条的拖动；再次游览课件时方可拖动进度条。</string>
+    <string name="study_time">课时: %1$s分钟</string>
+    <string name="next_study">下一课</string>
+    <string name="next_teacher_name">讲师:%1$s</string>
+    <string name="update_video_record">更新学习进度中...</string>
+    <string name="menu_question">提问</string>
+
+    <!-- 讲师简介 -->
+    <string name="teacher_info">讲师简介</string>
+
+    <!--个人中心 -->
+    <string name="home_bottom_me">我</string>
+    <string name="person_info">个人中心</string>
+    <string name="person_logo">头像</string>
+    <string name="person_name">姓名</string>
+    <string name="person_sex">性别</string>
+    <string name="person_email">邮箱</string>
+    <string name="person_birthday">出生日期</string>
+    <string name="person_certifacation">身份证号</string>
+    <string name="person_mobile">手机号码</string>
+    <string name="person_zhicheng">职称</string>
+    <string name="person_zhiwu">职务</string>
+    <string name="person_province_city">地区</string>
+    <string name="person_hospital">医院</string>
+    <string name="person_keshi">科室</string>
+    <string name="person_zip_code">邮编</string>
+    <string name="person_location">地址</string>
+    <string name="person_change_pwd">修改密码</string>
+    <string name="person_logout">退出登录</string>
+    <string name="person_tips">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效！\n 如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱sharon</string>
+    <string name="person_address">地址</string>
+    <string name="person_recipient_name">收件人姓名</string>
+    <string name="person_recipient_mobile">收件人手机</string>
+    <string name="person_recipient_zip_code">收件人地址邮编</string>
+    <string name="person_recipient_address">收件人地址</string>
+    <string name="person_info_save">保存</string>
+    <string name="person_tips_info">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效! \n如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱：2384474492@qq.com</string>
+
+    <!-- 登录界面 -->
+    <string name="login_enter_mobile_email">请输入手机号或邮箱</string>
+    <string name="login_enter_pwd">请输入密码</string>
+    <string name="login_forget_pwd">忘记密码</string>
+    <string name="login_login">登       录</string>
+    <string name="login_first_login">首次登录</string>
+
+    <!--  注册界面 -->
+    <string name="register_identify_code">请输入验证码</string>
+    <string name="register_get_identify_code">获取验证码</string>
+    <string name="register_confirm_pwd">请再次输入密码</string>
+
+    <!-- 课程介绍 -->
+    <string name="lesson_study_number">参与学员%1$s</string>
+    <string name="teacher_intro">本次课程讲师介绍</string>
+
+    <!-- 课件答疑 -->
+    <string name="attach_question">课件答疑</string>
+    <string name="question_nums">提问(%1$s)</string>
+    <string name="question_enter">请输入问题&#8230;</string>
+    <string name="content_null_error">内容不能为空</string>
+    <string name="question_success">提问成功</string>
+
+    <!-- 提示信息 -->
+    <string name="tips_login">正在登陆</string>
+    <string name="dialog_context_empty">手机号或邮箱不能为空哦</string>
+    <string name="dialog_context2_empty">不能有空哦</string>
+    <string name="dialog_context_format_error">手机号或邮箱格式不对，请重新输入</string>
+    <string name="dialog_context_pwd_format_error">密码格式不对，请重新输入</string>
+    <string name="dialog_context_pwd_twice_check_error">您输入的两次密码不一致，请重新输入</string>
+    <string name="dialog_title">温馨提示</string>
+    <string name="positive_button">确定</string>
+    <string name="negative_button">取消</string>
+    <string name="network_not_enbale">当前网络不可用或者非常缓慢</string>
+    <string name="retry_post">尝试再次获取数据[%1s]</string>
+    <string name="connect_timeout">连接超时</string>
+    <string name="loading_more_tips">loading...more..</string>
+    <string name="no_more_data">没有更多数据了</string>
+    <string name="fail_to_get_person_ata">获取个人信息失败</string>
+    <string name="changepwd_orgin_pwd">请输入原密码</string>
+    <string name="changepwd_new_pwd">请输入新密码</string>
+    <string name="changepwd_confirm_new_pwd">请再次输入新密码</string>
+    <string name="sure_to_log_out">你确定要退出登录吗？</string>
+    <string name="loading_upload_icon">正在上传头像，请稍等...</string>
+    <string name="upload_icon_success">头像上传成功</string>
+    <string name="study_is_finish">很抱歉，此次课程已结束，感谢您的参与</string>
+
+    <!-- 拍照弹出窗口 -->
+    <string name="popup_album">相册</string>
+    <string name="popup_take_photo">拍照</string>
+    <string name="popup_cancel">取消</string>
+    <string name="person_edit_info_tips">不许为空，请重新输入</string>
+    <string name="logout_tips">您的账号已在其他位置登录，请重新登录...</string>
+    <string name="get_date_tips">获取数据失败...</string>
+
+</resources>

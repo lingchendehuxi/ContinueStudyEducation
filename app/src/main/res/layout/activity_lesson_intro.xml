@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/app_background_color"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/refresh_layout"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/layout_margin"
+            android:padding="@dimen/layout_padding"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_lesson_title"
+                        android:textColor="@color/home_title_text_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_large"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/layout_margin"
+                        android:background="@color/divider_color"/>
+
+                    <TextView
+                        android:id="@+id/tv_lesson_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_small"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/layout_margin"
+                        android:background="@color/divider_color"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/layout_margin"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_left_time"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/text_size_small"
+                            android:drawableLeft="@mipmap/lesson_intro_time"
+                            android:layout_weight="3"
+                            android:textColor="@color/home_title_text_color"
+                            android:gravity="left|center_vertical"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/layout_margin"
+                    android:background="@color/white"
+                    android:padding="@dimen/layout_padding"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/text_size_small"
+                        android:textColor="@color/button_background1"
+                        android:gravity="center_vertical"
+                        android:drawableLeft="@mipmap/lesson_intro_teachers"
+                        android:text="@string/teacher_intro"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/layout_margin"
+                        android:background="@color/divider_color"/>
+
+                    <ListView
+                        android:id="@+id/lv_teachers"
+                        android:layout_width="match_parent"
+                        android:dividerHeight="0.1dp"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_no_data"
+                        android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/layout_padding"
+                        android:visibility="gone"
+                        android:text="@string/no_data"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

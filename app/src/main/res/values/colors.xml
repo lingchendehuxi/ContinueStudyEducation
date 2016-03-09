@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- From njlClient-->
+    <color name="transparent">#00000000</color>
+    <color name="simple_progress_dialog_background_color">#96000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="buttonBackground">#3469AF</color>
+    <color name="buttonBackground_select">#202A36</color>
+    <color name="dialog_divider">#cecece</color>
+    <color name="black">#000000</color>
+    <color name="gray">#feCCCCCC</color>
+    <color name="dark_gray">#666666</color>
+    <color name="blue">#3366CC</color>
+    <color name="little_gray">#f1CCCCFF</color>
+    <color name="app_background_color">#ebebeb</color>
+    <color name="tab_blue">#283593</color>
+    <color name="tab_light_blue">#03a9f4</color>
+    <color name="tab_purple">#9c27b0</color>
+    <color name="tab_green">#056f00</color>
+    <color name="tab_orange">#ff9800</color>
+    <color name="page_1">#7A5BBD</color>
+    <color name="page_1_dark">#624998</color>
+    <color name="page_2">#4388F0</color>
+    <color name="page_2_dark">#346CBE</color>
+    <color name="page_3">#7BB248</color>
+    <color name="page_3_dark">#628F38</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="radio_button_selected_color">#3366CC</color>
+    <color name="radio_button_unselected_color">@android:color/transparent</color>
+    <drawable name="top_tab_selected">#0066CC</drawable>
+    <drawable name="top_tab_unselected">#FFFFFF</drawable>
+    <color name="purple">#800080</color>
+
+    <!-- for progress bar-->
+    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
+    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
+    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent</color>
+
+    <color name="divider_color">#eee3d9</color>
+
+    <!-- Video -->
+    <color name="video_item_bg_blue">#0078db</color>
+    <color name="video_item_text_color">#d1d1d1</color>
+    <color name="video_item_text_color_blue">#0078db</color>
+
+
+    <color name="button_background1">#74c374</color>
+    <color name="button_background2">#008266</color>
+    <color name="button_start_study">#12c085</color>
+    <color name="button_text_color">#f4f4f4</color>
+    <color name="home_title_text_color">#008265</color>
+
+    <color name="next_video_background">#C9F3E4</color>
+
+</resources>

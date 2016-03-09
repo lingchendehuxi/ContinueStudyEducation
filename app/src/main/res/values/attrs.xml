@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Progress Bar Start-->
+    <declare-styleable name="RoundCornerProgress">
+        <attr name="rcReverse" format="boolean" />
+        <attr name="rcProgress" format="float" />
+        <attr name="rcMax" format="float" />
+        <attr name="rcSecondaryProgress" format="float" />
+        <attr name="rcBackgroundPadding" format="dimension" />
+        <attr name="rcRadius" format="dimension" />
+        <attr name="rcProgressColor" format="color" />
+        <attr name="rcSecondaryProgressColor" format="color" />
+        <attr name="rcBackgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="IconRoundCornerProgress">
+        <attr name="rcIconSrc" format="integer" />
+        <attr name="rcIconSize" format="dimension" />
+        <attr name="rcIconWidth" format="dimension" />
+        <attr name="rcIconHeight" format="dimension" />
+        <attr name="rcIconPadding" format="dimension" />
+        <attr name="rcIconPaddingLeft" format="dimension" />
+        <attr name="rcIconPaddingRight" format="dimension" />
+        <attr name="rcIconPaddingTop" format="dimension" />
+        <attr name="rcIconPaddingBottom" format="dimension" />
+        <attr name="rcIconBackgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TextRoundCornerProgress">
+        <attr name="rcTextProgressColor" format="color" />
+        <attr name="rcTextProgressSize" format="dimension" />
+        <attr name="rcTextProgressMargin" format="dimension" />
+        <attr name="rcTextProgress" format="string" />
+    </declare-styleable>
+    <!-- Progress Bar End-->
+
+    <!-- 精简播放器例子，包含一个基本的播放器以及一个广告层 -->
+    <array name="sv_videoview_layers2">
+        <item>@array/simple_ui_layer_controllayer</item>
+        <item>@array/simple_ui_ad_controllayer</item>
+    </array>
+
+    <!-- 一组竖屏+横屏 精简布局 -->
+    <array name="simple_ui_layer_controllayer">
+        <item>@layout/simple_ui_control_layer</item>
+        <item>@layout/simple_ui_control_layer_horizon</item>
+    </array>
+
+    <!-- 插入广告层，按照爱奇艺方式组织的 -->
+    <array name="simple_ui_ad_controllayer">
+        <item>@layout/simple_ui_ad_layer</item>
+        <item>@layout/simple_ui_ad_layer_horizon</item>
+    </array>
+
+    <!-- 精简播放器例子，包含一个基本的播放器以及一个广告层 重复观看时的插件-->
+    <array name="sv_videoview_layers_finish">
+        <item>@array/simple_ui_layer_controllayer_finish</item>
+        <item>@array/simple_ui_ad_controllayer</item>
+    </array>
+
+    <!-- 一组竖屏+横屏 精简布局 -->
+    <array name="simple_ui_layer_controllayer_finish">
+        <item>@layout/simple_ui_control_layer_finish</item>
+        <item>@layout/simple_ui_control_layer_horizon_finish</item>
+    </array>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <style name="ThemeActivity" mce_bogus="1" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+<style name="AnimationActivity" parent="@android:style/Animation.Activity" mce_bogus="1">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/back_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/back_exit</item>
+    </style>
+</resources>

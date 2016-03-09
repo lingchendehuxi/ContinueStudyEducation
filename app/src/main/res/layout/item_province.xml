@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_province_name"
+        android:padding="@dimen/layout_padding"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_media"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

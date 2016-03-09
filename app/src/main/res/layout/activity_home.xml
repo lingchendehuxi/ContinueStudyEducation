@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+ <include
+     android:id="@+id/toolbar"
+     layout="@layout/include_toolbar"/>
+
+    <!-- 底部菜单页面 -->
+    <RadioGroup
+        android:id="@+id/rg_home_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:divider="@color/black"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="-10dp"
+            android:checked="true"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector_home"
+            android:text="@string/home_bottom_title"
+            android:textColor="@drawable/home_bottom_text_color"
+            android:textSize="@dimen/text_size_media" />
+
+        <RadioButton
+            android:id="@+id/rb_notification"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:drawablePadding="-10dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector_message"
+            android:textColor="@drawable/home_bottom_text_color"
+            android:text="@string/home_bottom_notification"
+            android:textSize="@dimen/text_size_media" />
+
+        <RadioButton
+            android:id="@+id/rb_me"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="-10dp"
+            android:drawableTop="@drawable/selector_me"
+            android:textColor="@drawable/home_bottom_text_color"
+            android:gravity="center"
+            android:text="@string/home_bottom_me"
+            android:textSize="@dimen/text_size_media" />
+    </RadioGroup>
+
+    <ImageView android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_above="@id/rg_home_bottom"
+        android:id="@+id/iv_divider"
+        android:background="@color/gray"/>
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/iv_divider" >
+    </FrameLayout>
+
+</RelativeLayout>

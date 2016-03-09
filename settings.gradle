@@ -1,0 +1,1 @@
+include ':app', ':videoDemo_library_playercore_v2.0', ':videoDemo_library_playersdk_v2.0'
