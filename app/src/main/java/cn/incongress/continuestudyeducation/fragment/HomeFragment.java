@@ -48,6 +48,9 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
 
     private static final int DIALOG_CODE = 0x001;
 
+    //根据courseType决定课程是否可以点击
+    private boolean mIsCourseClickable = true;
+
     private static final String TAG = "HomeFragment";
 
     public HomeFragment(){}
@@ -77,13 +80,14 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
             adapter.SetOnItemClickListener(new ListAdapterHolder.OnItemClickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
-                    PlateArrayBean bean =  mCourseBean.getPlateArray().get(position);
-                    if(bean.getIsFinish() == 1) {
-                        SimpleDialogFragment.createBuilder(getActivity(), getFragmentManager()).
-                                setTitle(R.string.dialog_title).setMessage(R.string.study_is_finish).
-                                setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).show();
-                    }else {
+                    //先判断是否可以点击
+                    if(mIsCourseClickable) {
+                        PlateArrayBean bean =  mCourseBean.getPlateArray().get(position);
                         PlateDetailActivity.startPlateDetailActivity(getActivity(),bean.getPuuId());
+                    }else {
+                        SimpleDialogFragment.createBuilder(getActivity(), getFragmentManager()).
+                                setTitle(R.string.dialog_title).setMessage(mCourseBean.getcRemark()).
+                                setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).show();
                     }
                 }
             });
@@ -104,6 +108,16 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
             mTvSituation.setText(situation);
 
             mToolbar.setTitle(mCourseBean.getCourseName());
+
+            //课程还未开始，或已经结束
+            if(mCourseBean.getCourseType() == 0 || mCourseBean.getCourseType() == 2) {
+                SimpleDialogFragment.createBuilder(getActivity(), getFragmentManager()).
+                        setTitle(R.string.dialog_title).setMessage(mCourseBean.getcRemark()).
+                        setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).show();
+                mIsCourseClickable = false;
+            }else {
+                mIsCourseClickable = true;
+            }
         }else if(target == LOAD_DATA_NO_DATA) {
             mLlTopInfo.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.GONE);
@@ -146,17 +160,6 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
         mHandler.sendEmptyMessageDelayed(LOAD_REFRESH_SHOW, 100);
 		return view;
 	}
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        JPushInterface.setAlias(getActivity(), "fdafdasfjdskafj", new TagAliasCallback() {
-//            @Override
-//            public void gotResult(int i, String s, Set<String> set) {
-//
-//            }
-//        });
-    }
 
     /**
      * 初始化页面数据

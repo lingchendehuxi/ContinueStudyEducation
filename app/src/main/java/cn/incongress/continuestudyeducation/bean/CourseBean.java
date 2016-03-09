@@ -13,10 +13,32 @@ public class CourseBean {
     private String endTime;
     private int studyNumber;
     private String studyJd;
+    private int courseType;
+    private String cRemark;
     private int getCirtification;
     private double point;
     private String hasTime;
     private List<PlateArrayBean> plateArray;
+
+    public int getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(int courseType) {
+        this.courseType = courseType;
+    }
+
+    public String getcRemark() {
+        return cRemark;
+    }
+
+    public void setcRemark(String cRemark) {
+        this.cRemark = cRemark;
+    }
+
+    public void setPoint(double point) {
+        this.point = point;
+    }
 
     public String getCourseName() {
         return courseName;
@@ -107,7 +129,7 @@ public class CourseBean {
         this.point = point;
     }
 
-    public CourseBean(String cuuId, String courseName, String remark, String startTime, String endTime, int studyNumber, String studyJd, int getCirtification, double point, String hasTime, List<PlateArrayBean> plateArray) {
+    public CourseBean(String cuuId, String courseName, String remark, String startTime, String endTime, int studyNumber, String studyJd, int courseType, String cRemark, int getCirtification, double point, String hasTime, List<PlateArrayBean> plateArray) {
         this.cuuId = cuuId;
         this.courseName = courseName;
         this.remark = remark;
@@ -115,6 +137,8 @@ public class CourseBean {
         this.endTime = endTime;
         this.studyNumber = studyNumber;
         this.studyJd = studyJd;
+        this.courseType = courseType;
+        this.cRemark = cRemark;
         this.getCirtification = getCirtification;
         this.point = point;
         this.hasTime = hasTime;
@@ -131,9 +155,11 @@ public class CourseBean {
                 ", endTime='" + endTime + '\'' +
                 ", studyNumber=" + studyNumber +
                 ", studyJd='" + studyJd + '\'' +
+                ", courseType=" + courseType +
+                ", cRemark='" + cRemark + '\'' +
                 ", getCirtification=" + getCirtification +
                 ", point=" + point +
-                ", hasTime=" + hasTime +
+                ", hasTime='" + hasTime + '\'' +
                 ", plateArray=" + plateArray +
                 '}';
     }
