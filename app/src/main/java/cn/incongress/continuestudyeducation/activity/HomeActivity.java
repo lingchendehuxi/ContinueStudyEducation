@@ -122,7 +122,7 @@ public class HomeActivity extends BaseActivity {
     public void switchContent(Fragment from, Fragment to) {
         if (mCurrentFragment != to) {
             mCurrentFragment = to;
-            FragmentTransaction transaction = mFragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            FragmentTransaction transaction = mFragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             if (!to.isAdded()) {
                 transaction.hide(from).add(R.id.fl_container, to).commit();
             } else {
@@ -144,36 +144,11 @@ public class HomeActivity extends BaseActivity {
             case R.id.lession_introduction:
                 startActivity(new Intent(mContext, LessonIntroActivity.class));
                 return true;
-
             case R.id.action_use_introduction:
                 startActivity(new Intent(mContext, UseIntroActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        LogUtils.i(TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        LogUtils.i(TAG, "onPause");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        LogUtils.i(TAG, "onDestroy");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        LogUtils.i(TAG, "onStop");
     }
 }
