@@ -180,7 +180,8 @@ public class AttachStudyActivity extends BaseActivity implements VDVideoExtListe
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.attach_study);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.attach_study);
 
         mTvVideoName = getViewById(R.id.tv_video_name);
         mTvVideoTime = getViewById(R.id.tv_video_time);

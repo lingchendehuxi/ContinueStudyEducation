@@ -90,7 +90,8 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.attach_question);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.attach_question);
 
         mLvQuestions = getViewById(R.id.lv_qestions);
         mRefreshLayout = getViewById(R.id.refresh_layout);

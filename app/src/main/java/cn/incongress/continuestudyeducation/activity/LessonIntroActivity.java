@@ -57,7 +57,8 @@ public class LessonIntroActivity extends BaseActivity {
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.lession_introduction);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.lession_introduction);
 
         mTvLessonTitle = getViewById(R.id.tv_lesson_title);
         mTvLessonIntro = getViewById(R.id.tv_lesson_info);

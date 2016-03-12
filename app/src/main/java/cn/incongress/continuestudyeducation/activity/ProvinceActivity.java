@@ -3,9 +3,11 @@ package cn.incongress.continuestudyeducation.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,6 +44,12 @@ public class ProvinceActivity extends BaseActivity {
     @Override
     protected void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_province);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_province_city);
+
         mInstance = this;
     }
 

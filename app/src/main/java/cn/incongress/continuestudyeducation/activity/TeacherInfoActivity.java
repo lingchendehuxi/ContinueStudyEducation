@@ -53,7 +53,8 @@ public class TeacherInfoActivity extends BaseActivity {
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.teacher_info);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.teacher_info);
 
         mTvName = getViewById(R.id.tv_teacher_name);
         mTvRemark = getViewById(R.id.tv_teacher_info);

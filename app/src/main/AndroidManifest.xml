@@ -108,8 +108,14 @@
                 android:value=".activity.AttachStudyActivity"/>
         </activity>
 
-        <activity android:name=".activity.ProvinceActivity" />
-        <activity android:name=".activity.CityActivity"/>
+        <activity android:name=".activity.ProvinceActivity"  android:parentActivityName=".activity.HomeActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity"/>
+        </activity>
+        <activity android:name=".activity.CityActivity" android:parentActivityName=".activity.ProvinceActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ProvinceActivity"/>
+            </activity>
 
         <!-- JPush 需要  start -->
         <activity

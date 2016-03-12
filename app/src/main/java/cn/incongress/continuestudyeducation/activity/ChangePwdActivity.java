@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
@@ -55,7 +56,8 @@ public class ChangePwdActivity extends BaseActivity implements ISimpleDialogList
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.person_change_pwd);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_change_pwd);
 
         mEtOldPwd = getViewById(R.id.et_origin_pwd);
         mEtNewPwd = getViewById(R.id.et_new_pwd);

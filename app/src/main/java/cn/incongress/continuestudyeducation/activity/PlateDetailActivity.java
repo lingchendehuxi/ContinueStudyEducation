@@ -123,7 +123,8 @@ public class PlateDetailActivity extends BaseActivity {
     protected void initializeViews(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.plate_detail);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.plate_detail);
 
         mTvPlateName = getViewById(R.id.tv_plate_name);
         mTvStudyProgress = getViewById(R.id.tv_study_progress);

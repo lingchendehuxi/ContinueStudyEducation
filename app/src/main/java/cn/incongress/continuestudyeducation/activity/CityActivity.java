@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,6 +48,7 @@ public class CityActivity extends BaseActivity {
     private int mProvinceId;
     private int mChooseCityId;
     private String mChooseProvinceName = "" ;
+    private Toolbar mToolbar;
 
     public static void startCityActivityByProvinceId(Context ctx, int provinceId, String provinceName) {
         Intent intent = new Intent();
@@ -58,6 +61,12 @@ public class CityActivity extends BaseActivity {
     @Override
     protected void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_city);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.plate_detail);
+        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_province_city);
+
         mProvinceId = getIntent().getIntExtra(INTENT_PROVINCE_ID, 1);
         mChooseProvinceName = getIntent().getStringExtra(INTENT_PROVINCE_NAME);
         if(StringUtils.isEmpty(getSPValue(Constant.SP_CITY_ID))) {
