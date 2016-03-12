@@ -1,13 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/button_background2</item>
-        <item name="colorAccent">@color/button_background2</item>
-    </style>
-
     <style name="ToolBarStyle" parent="ToolBarStyle.Base"/>
 
     <style name="ToolBarStyle.Base" parent="">
@@ -44,4 +36,12 @@
     <style name="ToolbarMenuTextSize" parent="@style/TextAppearance.AppCompat.Menu">
         <item name="android:textSize">@dimen/text_size_media</item>
     </style>
+
+    <!-- 加载滚动条样式 -->
+    <style name="loading" parent="@android:style/Widget.DeviceDefault.Light.ProgressBar">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
 </resources>

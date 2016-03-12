@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.incongress.continuestudyeducation.utils.ObjectUtils;
+
 /**
  * String Utils
  *

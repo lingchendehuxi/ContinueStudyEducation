@@ -1,19 +1,15 @@
 package cn.incongress.continuestudyeducation.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.incongress.continuestudyeducation.R;
-import cn.incongress.continuestudyeducation.activity.PlateDetailActivity;
-import cn.incongress.continuestudyeducation.adapter.ListAdapterHolder;
 import cn.incongress.continuestudyeducation.adapter.NotifyListAdapter;
 import cn.incongress.continuestudyeducation.base.BaseFragment;
 import cn.incongress.continuestudyeducation.bean.Constant;
-import cn.incongress.continuestudyeducation.bean.CourseBean;
 import cn.incongress.continuestudyeducation.bean.NotifyArrayBean;
 import cn.incongress.continuestudyeducation.service.CMEHttpClientUsage;
 import cn.incongress.continuestudyeducation.utils.LogUtils;
@@ -49,9 +42,11 @@ public class NotificationFragment extends BaseFragment {
 
     private int mNotifyId = -1;
     private boolean mIsLoadMoreState = false;
+    private View footerLayout;
+    private TextView textMore;
 
     private static NotificationFragment mInstance;
-    private List<NotifyArrayBean> mNotifys;
+    private ArrayList<NotifyArrayBean> mNotifys;
     public NotificationFragment(){}
 
     public static NotificationFragment getInstance() {
@@ -66,9 +61,9 @@ public class NotificationFragment extends BaseFragment {
         int target = msg.what;
 
         if(target == LOAD_DATA_COMPLETE) {
-            mAdapter = new NotifyListAdapter(getActivity(), mNotifys);
+            mAdapter = new NotifyListAdapter();
+            mAdapter.setData(mNotifys);
             mNotifyList.setAdapter(mAdapter);
-
             mRefreshLayout.setRefreshing(false);
         }else if(target == LOAD_DATA_NO_DATA) {
         }else if(target == LOAD_DATA_ERROR) {
@@ -93,6 +88,13 @@ public class NotificationFragment extends BaseFragment {
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         mNotifyList.setEmptyView(view.findViewById(R.id.tv_no_data));
 
+        mNotifyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
         mNotifyList.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -108,6 +110,14 @@ public class NotificationFragment extends BaseFragment {
             }
         });
 
+        footerLayout = LayoutInflater.from(getActivity()).inflate(R.layout.listview_footer, null);
+        textMore = (TextView) footerLayout.findViewById(R.id.text_more);
+        textMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDatas(mNotifys.get(mNotifys.size()-1).getNotifyId());
+            }
+        });
 
         mRefreshLayout.setColorSchemeResources(R.color.button_background2);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

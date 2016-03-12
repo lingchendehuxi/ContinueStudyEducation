@@ -11,8 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.incongress.continuestudyeducation.R;
@@ -35,7 +37,9 @@ public class HomeActivity extends BaseActivity {
     private static NotificationFragment mNotificationFragment;
     private static MeFragment mMeFragment;
     private FragmentManager mFragmentManager;
-
+    private TextView mTvToolbarTitle;
+    private Toolbar mToolbar;
+    private ImageView mIvIntro;
     private boolean isMenuShow = true;
 
     @Override
@@ -49,8 +53,11 @@ public class HomeActivity extends BaseActivity {
         mRbHome = getViewById(R.id.rb_home);
         mRbNotification = getViewById(R.id.rb_me);
         mRbMe = getViewById(R.id.rb_notification);
-        setSupportActionBar( (Toolbar) findViewById(R.id.toolbar));
-
+        mTvToolbarTitle = getViewById(R.id.tv_title);
+        mIvIntro = getViewById(R.id.iv_use_intro);
+        mToolbar = getViewById(R.id.toolbar);
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
         mFragmentManager = getSupportFragmentManager();
     }
 
@@ -65,13 +72,13 @@ public class HomeActivity extends BaseActivity {
 
                         if (mHomeFragment == null)
                             mHomeFragment = HomeFragment.getInstance();
-                        getSupportActionBar().setTitle(R.string.home_title);
+                        mTvToolbarTitle.setText(R.string.home_title);
                         switchContent(mCurrentFragment, mHomeFragment);
                         break;
                     case R.id.rb_notification:
                         isMenuShow = false;
 
-                        getSupportActionBar().setTitle(R.string.home_bottom_notification);
+                        mTvToolbarTitle.setText(R.string.home_bottom_notification);
                         if (mNotificationFragment == null)
                             mNotificationFragment = NotificationFragment.getInstance();
                         switchContent(mCurrentFragment, mNotificationFragment);
@@ -79,7 +86,8 @@ public class HomeActivity extends BaseActivity {
                     case R.id.rb_me:
                         isMenuShow = false;
 
-                        getSupportActionBar().setTitle(R.string.person_info);
+
+                        mTvToolbarTitle.setText(R.string.person_info);
                         if (mMeFragment == null) {
                             mMeFragment = MeFragment.getInstance();
                         }
@@ -90,16 +98,23 @@ public class HomeActivity extends BaseActivity {
                 invalidateOptionsMenu();
             }
         });
+
+        mIvIntro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, UseIntroActivity.class));
+            }
+        });
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if(!isMenuShow) {
             menu.findItem(R.id.lession_introduction).setVisible(false);
-            menu.findItem(R.id.action_use_introduction).setVisible(false);
+            mIvIntro.setVisibility(View.GONE);
         }else {
             menu.findItem(R.id.lession_introduction).setVisible(true);
-            menu.findItem(R.id.action_use_introduction).setVisible(true);
+            mIvIntro.setVisibility(View.VISIBLE);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -144,9 +159,7 @@ public class HomeActivity extends BaseActivity {
             case R.id.lession_introduction:
                 startActivity(new Intent(mContext, LessonIntroActivity.class));
                 return true;
-            case R.id.action_use_introduction:
-                startActivity(new Intent(mContext, UseIntroActivity.class));
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -49,7 +49,6 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSharedPreference = getActivity().getSharedPreferences(Constant.DEFAULT_SP_NAME, getActivity().MODE_PRIVATE);
-
     }
 
     /**

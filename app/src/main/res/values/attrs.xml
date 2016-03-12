@@ -69,11 +69,6 @@
         <attr name="border_color" format="color" />
     </declare-styleable>
 
-    <style name="ThemeActivity" mce_bogus="1" parent="AppTheme">
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
 <style name="AnimationActivity" parent="@android:style/Animation.Activity" mce_bogus="1">
         <item name="android:activityOpenEnterAnimation">@anim/anim_enter</item>
         <item name="android:activityOpenExitAnimation">@anim/anim_exit</item>

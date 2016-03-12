@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
     private SwipeRefreshLayout mRefreshLayout;
     private LinearLayoutManager mLayoutManager;
     private LinearLayout mLlTopInfo;
-    private Toolbar mToolbar;
+    private TextView mTvTitle;
 
     private static final int DIALOG_CODE = 0x001;
 
@@ -107,7 +107,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
             }
             mTvSituation.setText(situation);
 
-            mToolbar.setTitle(mCourseBean.getCourseName());
+            mTvTitle.setText(mCourseBean.getCourseName());
 
             //课程还未开始，或已经结束
             if(mCourseBean.getCourseType() == 0 || mCourseBean.getCourseType() == 2) {
@@ -144,7 +144,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         mTvSituation = (TextView) view.findViewById(R.id.tv_situation);
         mTvSituationContent = (TextView) view.findViewById(R.id.tv_situation_content);
-        mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        mTvTitle = (TextView) getActivity().findViewById(R.id.tv_title);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -168,7 +168,6 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
         CMEHttpClientUsage.getInstanse().doGetCourse(Constant.PROJECT_ID, getSPValue(Constant.SP_USER_UUID), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                LogUtils.v(TAG + "[onSuccess]", response.toString());
                 try {
                     int status = response.getInt("state");
                     if (status == 1) {

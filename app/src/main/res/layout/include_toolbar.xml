@@ -9,4 +9,20 @@
     app:titleTextColor="@color/home_title_text_color"
     app:subtitleTextColor="@color/button_start_study"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_gravity="center"
+            android:textColor="@color/home_title_text_color"
+            android:textSize="@dimen/text_size_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/iv_use_intro"
+        android:src="@drawable/ic_launcher"
+        android:layout_width="32dp"
+        android:visibility="gone"
+        android:layout_height="32dp" />
+
+</android.support.v7.widget.Toolbar>

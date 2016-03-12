@@ -1,6 +1,7 @@
 package cn.incongress.continuestudyeducation.base;
 
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -23,9 +24,13 @@ import cn.jpush.android.api.JPushInterface;
  * Created by Jacky on 2015/12/18.
  */
 public class BaseApplication extends Application {
+    static Context _context;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        _context = getApplicationContext();
 
         DisplayImageOptions options;
         options = new DisplayImageOptions.Builder()
@@ -65,5 +70,9 @@ public class BaseApplication extends Application {
         //初始化JPush相关的东西
         JPushInterface.init(getApplicationContext());
         JPushInterface.setDebugMode(Constant.DEBUG);
+    }
+
+    public static synchronized BaseApplication context() {
+        return (BaseApplication) _context;
     }
 }

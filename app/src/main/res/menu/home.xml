@@ -7,10 +7,10 @@
         android:title="@string/lession_introduction"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/action_use_introduction"
-        android:title="@string/use_intro"
-        app:showAsAction="never"
-        />
+    <!--<item-->
+        <!--android:id="@+id/action_use_introduction"-->
+        <!--android:title="@string/use_intro"-->
+        <!--app:showAsAction="never"-->
+        <!--/>-->
 
 </menu>
