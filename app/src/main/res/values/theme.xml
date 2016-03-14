@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 日间模式 -->
+    <style name="AppBaseTheme_Light" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/button_background2</item>
+        <item name="colorAccent">@color/button_background2</item>
+        <item name="layout_item_bg">@drawable/day_list_item_background</item>
+        <item name="infoTextColor">@color/day_infoTextColor</item>
+
+        <!-- Activity动画模式-->
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    </style>
+</resources>
