@@ -42,8 +42,8 @@ public class NotificationFragment extends BaseFragment {
 
     private int mNotifyId = -1;
     private boolean mIsLoadMoreState = false;
-    private View footerLayout;
-    private TextView textMore;
+//    private View footerLayout;
+//    private TextView textMore;
 
     private static NotificationFragment mInstance;
     private ArrayList<NotifyArrayBean> mNotifys;
@@ -110,14 +110,14 @@ public class NotificationFragment extends BaseFragment {
             }
         });
 
-        footerLayout = LayoutInflater.from(getActivity()).inflate(R.layout.listview_footer, null);
-        textMore = (TextView) footerLayout.findViewById(R.id.text_more);
-        textMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initDatas(mNotifys.get(mNotifys.size()-1).getNotifyId());
-            }
-        });
+//        footerLayout = LayoutInflater.from(getActivity()).inflate(R.layout.listview_footer, null);
+//        textMore = (TextView) footerLayout.findViewById(R.id.text_more);
+//        textMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                initDatas(mNotifys.get(mNotifys.size()-1).getNotifyId());
+//            }
+//        });
 
         mRefreshLayout.setColorSchemeResources(R.color.button_background2);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
