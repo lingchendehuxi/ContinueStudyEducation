@@ -20,7 +20,7 @@
 
     <ImageView
         android:id="@+id/iv_use_intro"
-        android:src="@drawable/ic_launcher"
+        android:src="@mipmap/home_help"
         android:layout_width="32dp"
         android:visibility="gone"
         android:layout_height="32dp" />
