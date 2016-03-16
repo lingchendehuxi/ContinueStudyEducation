@@ -95,13 +95,13 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
             mRefreshLayout.setRefreshing(false);
 
             String situation = "";
-            if(mCourseBean.getGetCirtification() == 1) {
+            if(mCourseBean.getGetCirtification() == 0) {
                 situation = "课程学习";
                 mTvSituationContent.setText(getString(R.string.situation1,mCourseBean.getPoint()));
-            }else if(mCourseBean.getGetCirtification() == 2) {
+            }else if(mCourseBean.getGetCirtification() == 1) {
                 situation = "证书审核中";
                 mTvSituationContent.setText(getString(R.string.situation2,mCourseBean.getPoint()));
-            }else if(mCourseBean.getGetCirtification() == 3) {
+            }else if(mCourseBean.getGetCirtification() == 2) {
                 situation = "审核通过";
                 mTvSituationContent.setText(getString(R.string.situation3,mCourseBean.getPoint()));
             }
