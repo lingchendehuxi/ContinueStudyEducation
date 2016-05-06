@@ -51,12 +51,18 @@
     <string name="person_certifacation">身份证号</string>
     <string name="person_mobile">手机号码</string>
     <string name="person_zhicheng">职称</string>
+    <string name="person_phone">电话</string>
+    <string name="person_education">学历</string>
     <string name="person_zhiwu">职务</string>
     <string name="person_province_city">地区</string>
-    <string name="person_hospital">医院</string>
+    <string name="person_province_location">区县</string>
+    <string name="person_hospital">单位</string>
+    <string name="person_hospital_level">单位等级</string>
     <string name="person_keshi">科室</string>
+    <string name="person_adjust_keshi">校正科室</string>
     <string name="person_zip_code">邮编</string>
     <string name="person_location">地址</string>
+    <string name="person_feed_back">意见反馈</string>
     <string name="person_change_pwd">修改密码</string>
     <string name="person_logout">退出登录</string>
     <string name="person_tips">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效！\n 如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱sharon</string>
@@ -67,6 +73,7 @@
     <string name="person_recipient_address">收件人地址</string>
     <string name="person_info_save">保存</string>
     <string name="person_tips_info">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效! \n如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱：2384474492@qq.com</string>
+    <string name="person_url_feed_back">http://weixin.incongress.cn/xhy/xhyHtml5/html/feedback.html?userId=%1$s&#038;project=CME</string>
 
     <!-- 登录界面 -->
     <string name="login_enter_mobile_email">请输入手机号或邮箱</string>

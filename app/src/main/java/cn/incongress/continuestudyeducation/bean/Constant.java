@@ -47,6 +47,8 @@ public class Constant {
     public static final String SP_PERSON_NAME = "person_name";
     public static final String SP_PERSON_EMAIL = "person_email";
     public static final String SP_PERSON_BIRTHDAY = "person_birthday";
+    public static final String SP_PERSON_BIRTHDAY_YEAR = "person_birthday_year";
+    public static final String SP_PERSON_BIRTHDAY_MONTH = "person_birthday_month";
     public static final String SP_PERSON_CIRTIFICATION = "person_cirtifacation";
     public static final String SP_PERSON_MOBILE = "person_mobile";
 
@@ -55,8 +57,13 @@ public class Constant {
     public static final String SP_CITY_ID = "person_city_id";
     public static final String SP_PROVINCE_ID = "person_province_id";
     public static final String SP_PROVINCE_CITY_NAME = "person_province_city";
+    public static final String SP_PROVINCE_LOCATION = "person_province_location";
     public static final String SP_HOSPITAL = "person_hospital";
+    public static final String SP_HOSPITAL_LEVEL = "person_hospital_level";
     public static final String SP_KESHI = "person_keshi";
+    public static final String SP_ADJUST_KESHI = "person_adjust_keshi";
+    public static final String SP_PHONE = "person_phone";
+    public static final String SP_EDUCATION = "person_education";
     public static final String SP_ZIP_CODE = "person_zip_code";
     public static final String SP_ADDRESS = "person_address";
 

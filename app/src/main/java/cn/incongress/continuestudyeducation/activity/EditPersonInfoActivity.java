@@ -41,6 +41,11 @@ public class EditPersonInfoActivity extends BaseActivity{
     public static final int TYPE_RECIEPIENT_ZIPCODE = 9;
     public static final int TYPE_RECIEPIENT_ADDRESS = 10;
     public static final int TYPE_PROVINCE_CITY = 11;
+    public static final int TYPE_PROVINCE_LOCATION = 12;
+    public static final int TYPE_HOSPITAL_LEVEL = 13;
+    public static final int TYPE_ADJUST_KESHI = 14;
+    public static final int TYPE_PHONE = 15;
+    public static final int TYPE_EDUCATION = 16;
 
     private EditText mEtInfo;
 
@@ -56,7 +61,7 @@ public class EditPersonInfoActivity extends BaseActivity{
         setContentView(R.layout.activity_edit_person_info);
         mCurrentType = getIntent().getIntExtra(INFO_TYPE, TYPE_ZHICHENG);
 
-        LogUtils.i(TAG, ""+mCurrentType);
+        LogUtils.i(TAG, "" + mCurrentType);
     }
 
     @Override
@@ -95,6 +100,21 @@ public class EditPersonInfoActivity extends BaseActivity{
         }else if(mCurrentType == TYPE_RECIEPIENT_ADDRESS) {
             getSupportActionBar().setTitle(R.string.person_recipient_address);
             mEtInfo.setText(getSPValue(Constant.SP_RECIPIENT_ADDRESS));
+        } else if(mCurrentType == TYPE_PROVINCE_LOCATION) {
+            getSupportActionBar().setTitle(R.string.person_province_location);
+            mEtInfo.setText(getSPValue(Constant.SP_PROVINCE_LOCATION));
+        } else if(mCurrentType == TYPE_HOSPITAL_LEVEL) {
+            getSupportActionBar().setTitle(R.string.person_hospital_level);
+            mEtInfo.setText(getSPValue(Constant.SP_HOSPITAL_LEVEL));
+        } else if(mCurrentType == TYPE_ADJUST_KESHI) {
+            getSupportActionBar().setTitle(R.string.person_adjust_keshi);
+            mEtInfo.setText(getSPValue(Constant.SP_ADJUST_KESHI));
+        }else if(mCurrentType == TYPE_PHONE) {
+            getSupportActionBar().setTitle(R.string.person_phone);
+            mEtInfo.setText(getSPValue(Constant.SP_PHONE));
+        }else if(mCurrentType == TYPE_EDUCATION) {
+            getSupportActionBar().setTitle(R.string.person_education);
+            mEtInfo.setText(getSPValue(Constant.SP_EDUCATION));
         }
 
         mEtInfo.setSelection(mEtInfo.getText().length());
@@ -171,6 +191,18 @@ public class EditPersonInfoActivity extends BaseActivity{
                     }
                 }else if(mCurrentType == TYPE_RECIEPIENT_ADDRESS) {
                     setSPValue(Constant.SP_RECIPIENT_ADDRESS, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_PROVINCE_LOCATION) {
+                    setSPValue(Constant.SP_PROVINCE_LOCATION, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_PROVINCE_LOCATION) {
+                    setSPValue(Constant.SP_PROVINCE_LOCATION, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_HOSPITAL_LEVEL) {
+                    setSPValue(Constant.SP_HOSPITAL_LEVEL, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_ADJUST_KESHI) {
+                    setSPValue(Constant.SP_ADJUST_KESHI, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_PHONE) {
+                    setSPValue(Constant.SP_PHONE, mEtInfo.getText().toString().trim());
+                }else if(mCurrentType == TYPE_EDUCATION) {
+                    setSPValue(Constant.SP_EDUCATION, mEtInfo.getText().toString().trim());
                 }
                 showShortToast("保存成功");
                 this.finish();

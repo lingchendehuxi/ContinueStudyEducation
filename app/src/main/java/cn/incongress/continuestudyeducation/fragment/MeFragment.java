@@ -2,10 +2,8 @@ package cn.incongress.continuestudyeducation.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
@@ -40,6 +38,7 @@ import cn.incongress.continuestudyeducation.activity.ChangePwdActivity;
 import cn.incongress.continuestudyeducation.activity.EditPersonInfoActivity;
 import cn.incongress.continuestudyeducation.activity.LoginActivity;
 import cn.incongress.continuestudyeducation.activity.ProvinceActivity;
+import cn.incongress.continuestudyeducation.activity.WebViewActivity;
 import cn.incongress.continuestudyeducation.base.BaseFragment;
 import cn.incongress.continuestudyeducation.bean.Constant;
 import cn.incongress.continuestudyeducation.bean.PersonBean;
@@ -58,9 +57,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
     private static MeFragment mInstance;
     private SwipeRefreshLayout mRefreshLayout;
     private CircleImageView mIvIcon;
-    private TextView mTvName,mTvSex, mTvEmail, mTvBirthday, mTvCertification, mTvMobile,
-                mTvZhiCheng, mTvZhiWu, mTvProvinceCity, mTvHospital, mTvKeshi, mTvZipCode,mTvAddress,mTvRecipientName,
-                mTvRecipientMobile, mTvRecipientZipCode, mTvRecipientAddress;
+    private TextView mTvName,mTvSex, mTvEmail, mTvBirthday, mTvMobile,
+                mTvZhiCheng, mTvZhiWu, mTvProvinceCity, mTvHospital, mTvKeshi, mTvZipCode,mTvAddress;
+    private TextView mTvProvinceLocation,mTvHospitalLevel, mTvAjustKeshi, mTvPhone, mTvEducation;
+    private TextView mTvFeedback;
     private IconChoosePopupWindow mIconChoosePopupWindow;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -91,8 +91,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             mTvName.setText(mPersonBean.getTrueName());
             mTvSex.setText(mPersonBean.getSex());
             mTvEmail.setText(mPersonBean.getEmail());
-            mTvBirthday.setText(mPersonBean.getBirthDay());
-            mTvCertification.setText(mPersonBean.getIdCard());
+            mTvBirthday.setText(mPersonBean.getBirthYear()+"-" + mPersonBean.getBirthMonth());
             mTvMobile.setText(mPersonBean.getMobilePhone());
             mTvZhiCheng.setText(mPersonBean.getZhicheng());
             mTvZhiWu.setText(mPersonBean.getZhiwu());
@@ -100,11 +99,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             mTvKeshi.setText((mPersonBean.getKeshi()));
             mTvZipCode.setText(mPersonBean.getZip());
             mTvAddress.setText(mPersonBean.getAddress());
+            mTvProvinceLocation.setText(mPersonBean.getArea());
+            mTvHospitalLevel.setText(mPersonBean.getUnitlevel());
+            mTvAjustKeshi.setText(mPersonBean.getJzDep());
+            mTvPhone.setText(mPersonBean.getTelPhone());
+            mTvEducation.setText(mPersonBean.getEducation());
 
-            mTvRecipientName.setText(mPersonBean.getRecipients());
-            mTvRecipientMobile.setText(mPersonBean.getRecipientsMphone());
-            mTvRecipientZipCode.setText(mPersonBean.getRecipientsZip());
-            mTvRecipientAddress.setText(mPersonBean.getRecipientsAddress());
             mTvProvinceCity.setText(mPersonBean.getProvince() + " " + mPersonBean.getCity());
             mRefreshLayout.setRefreshing(false);
 
@@ -125,8 +125,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         setSPValue(Constant.SP_PERSON_LOGO, mPersonBean.getImgUrl());
         setSPValue(Constant.SP_PERSON_NAME, mPersonBean.getTrueName());
         setSPValue(Constant.SP_PERSON_EMAIL, mPersonBean.getEmail());
-        setSPValue(Constant.SP_PERSON_BIRTHDAY, mPersonBean.getBirthDay());
-        setSPValue(Constant.SP_PERSON_CIRTIFICATION, mPersonBean.getIdCard());
+        setSPValue(Constant.SP_PERSON_BIRTHDAY_YEAR, mPersonBean.getBirthYear());
+        setSPValue(Constant.SP_PERSON_BIRTHDAY_MONTH, mPersonBean.getBirthMonth());
         setSPValue(Constant.SP_PERSON_MOBILE, mPersonBean.getMobilePhone());
 
         setSPValue(Constant.SP_ZHICHENG, mPersonBean.getZhicheng());
@@ -136,10 +136,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         setSPValue(Constant.SP_ZIP_CODE, mPersonBean.getZip());
         setSPValue(Constant.SP_ADDRESS, mPersonBean.getAddress());
 
-        setSPValue(Constant.SP_RECIPIENT_NAME, mPersonBean.getRecipients());
-        setSPValue(Constant.SP_RECIPIENT_MOBILE, mPersonBean.getRecipientsMphone());
-        setSPValue(Constant.SP_RECIPIENT_ZIP_CODE, mPersonBean.getRecipientsZip());
-        setSPValue(Constant.SP_RECIPIENT_ADDRESS, mPersonBean.getRecipientsAddress());
+        setSPValue(Constant.SP_PROVINCE_LOCATION, mPersonBean.getArea());
+        setSPValue(Constant.SP_HOSPITAL_LEVEL, mPersonBean.getUnitlevel());
+        setSPValue(Constant.SP_ADJUST_KESHI, mPersonBean.getJzDep());
+        setSPValue(Constant.SP_PHONE, mPersonBean.getTelPhone());
+        setSPValue(Constant.SP_EDUCATION, mPersonBean.getEducation());
     }
 
     public static MeFragment getInstance() {
@@ -185,16 +186,18 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             mTvZipCode.setText(content);
         }else if(type == EditPersonInfoActivity.TYPE_ADDRESS) {
             mTvAddress.setText(content);
-        }else if(type == EditPersonInfoActivity.TYPE_RECIEPIENT_NAME) {
-            mTvRecipientName.setText(content);
-        }else if(type == EditPersonInfoActivity.TYPE_RECIEPIENT_MOBILE) {
-            mTvRecipientMobile.setText(content);
-        }else if(type == EditPersonInfoActivity.TYPE_RECIEPIENT_ZIPCODE) {
-            mTvRecipientZipCode.setText(content);
-        } else if (type == EditPersonInfoActivity.TYPE_RECIEPIENT_ADDRESS) {
-            mTvRecipientAddress.setText(content);
-        } else if(type == EditPersonInfoActivity.TYPE_PROVINCE_CITY) {
+        }else if(type == EditPersonInfoActivity.TYPE_PROVINCE_CITY) {
             mTvProvinceCity.setText(content);
+        }else if(type == EditPersonInfoActivity.TYPE_PROVINCE_LOCATION) {
+            mTvProvinceLocation.setText(content);
+        }else if(type == EditPersonInfoActivity.TYPE_HOSPITAL_LEVEL) {
+            mTvHospitalLevel.setText(content);
+        }else if(type == EditPersonInfoActivity.TYPE_ADJUST_KESHI) {
+            mTvAjustKeshi.setText(content);
+        }else if(type == EditPersonInfoActivity.TYPE_PHONE) {
+            mTvPhone.setText(content);
+        }else if(type == EditPersonInfoActivity.TYPE_EDUCATION) {
+            mTvEducation.setText(content);
         }
 
         //更新个人信息
@@ -209,7 +212,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         mTvSex = (TextView) view.findViewById(R.id.tv_sex);
         mTvEmail = (TextView) view.findViewById(R.id.tv_email);
         mTvBirthday = (TextView) view.findViewById(R.id.tv_birthday);
-        mTvCertification = (TextView) view.findViewById(R.id.tv_certification);
+//        mTvCertification = (TextView) view.findViewById(R.id.tv_certification);
         mTvMobile = (TextView) view.findViewById(R.id.tv_mobile);
         mTvZhiCheng = (TextView) view.findViewById(R.id.tv_zhicheng);
         mTvZhiWu = (TextView) view.findViewById(R.id.tv_zhiwu);
@@ -218,11 +221,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         mTvKeshi = (TextView) view.findViewById(R.id.tv_keshi);
         mTvZipCode = (TextView) view.findViewById(R.id.tv_zip_code);
         mTvAddress = (TextView) view.findViewById(R.id.tv_address);
-        mTvRecipientName = (TextView) view.findViewById(R.id.tv_recipient_name);
-        mTvRecipientMobile = (TextView) view.findViewById(R.id.tv_recipient_mobile);
-        mTvRecipientZipCode = (TextView) view.findViewById(R.id.tv_recipient_zip_code);
-        mTvRecipientAddress = (TextView) view.findViewById(R.id.tv_recipient_address);
+        mTvFeedback = (TextView) view.findViewById(R.id.tv_feed_back);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
+
+        mTvProvinceLocation = (TextView) view.findViewById(R.id.tv_province_location);
+        mTvHospitalLevel = (TextView) view.findViewById(R.id.tv_hospital_level);
+        mTvAjustKeshi = (TextView) view.findViewById(R.id.tv_adjust_keshi);
+        mTvPhone = (TextView) view.findViewById(R.id.tv_phone);
+        mTvEducation = (TextView) view.findViewById(R.id.tv_education);
 
         mRefreshLayout.setColorSchemeResources(R.color.button_background2);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -250,16 +256,19 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         view.findViewById(R.id.ll_keshi).setOnClickListener(this);
         view.findViewById(R.id.ll_zip_code).setOnClickListener(this);
         view.findViewById(R.id.ll_address).setOnClickListener(this);
-        view.findViewById(R.id.ll_recipient_name).setOnClickListener(this);
-        view.findViewById(R.id.ll_recipient_mobile).setOnClickListener(this);
-        view.findViewById(R.id.ll_recipient_zip_code).setOnClickListener(this);
-        view.findViewById(R.id.ll_recipient_address).setOnClickListener(this);
         view.findViewById(R.id.tv_change_pwd).setOnClickListener(this);
         view.findViewById(R.id.tv_log_out).setOnClickListener(this);
+        mTvFeedback.setOnClickListener(this);
+        view.findViewById(R.id.ll_province_location).setOnClickListener(this);
+        view.findViewById(R.id.ll_hospital_level).setOnClickListener(this);
+        view.findViewById(R.id.ll_adjust_keshi).setOnClickListener(this);
+        view.findViewById(R.id.ll_phone).setOnClickListener(this);
+        view.findViewById(R.id.ll_education).setOnClickListener(this);
+
     }
 
     private void initDatas() {
-        CMEHttpClientUsage.getInstanse().doGetUserInfo(getSPValue(Constant.SP_USER_UUID), new JsonHttpResponseHandler() {
+        CMEHttpClientUsage.getInstanse().doGetUserInfoNew(getSPValue(Constant.SP_USER_UUID), new JsonHttpResponseHandler() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -308,14 +317,35 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
                 break;
             case R.id.ll_zhiwu:
                 EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_ZHIWU);
+                break;
             case R.id.ll_province_city:
                 startActivity(new Intent(getActivity(), ProvinceActivity.class));
+                break;
+            case R.id.ll_province_location:
+                //区县
+                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_PROVINCE_LOCATION);
                 break;
             case R.id.ll_hospital:
                 EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_HOSPITAL);
                 break;
+            case R.id.ll_hospital_level:
+                //单位登记
+                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_HOSPITAL_LEVEL);
+                break;
             case R.id.ll_keshi:
                 EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_KESHI);
+                break;
+            case R.id.ll_adjust_keshi:
+                //校正科室
+                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_ADJUST_KESHI);
+                break;
+            case R.id.ll_phone:
+                //电话
+                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_PHONE);
+                break;
+            case R.id.ll_education:
+                //学历
+                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_EDUCATION);
                 break;
             case R.id.ll_zip_code:
                 EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_ZIPCODE);
@@ -323,24 +353,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             case R.id.ll_address:
                 EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_ADDRESS);
                 break;
-            case R.id.ll_recipient_name:
-                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_RECIEPIENT_NAME);
-                break;
-            case R.id.ll_recipient_mobile:
-                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_RECIEPIENT_MOBILE);
-                break;
-            case R.id.ll_recipient_zip_code:
-                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_RECIEPIENT_ZIPCODE);
-                break;
-            case R.id.ll_recipient_address:
-                EditPersonInfoActivity.startEditPersonInfoActivity(getActivity(), EditPersonInfoActivity.TYPE_RECIEPIENT_ADDRESS);
-                break;
             case R.id.tv_change_pwd:
                 ChangePwdActivity.startChangePwdActivity(getActivity());
                 break;
             case R.id.tv_log_out:
                 SimpleDialogFragment.createBuilder(getActivity(),getFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.sure_to_log_out).
                         setNegativeButtonText(R.string.negative_button).setPositiveButtonText(R.string.positive_button).setTargetFragment(this,REQUEST_CODE).show();
+                break;
+            case R.id.tv_feed_back:
+                WebViewActivity.startWebViewActivity(getActivity(),getString(R.string.person_url_feed_back, getSPValue(Constant.SP_USER_UUID)), getString(R.string.person_feed_back));
                 break;
         }
     }
@@ -597,14 +618,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
 
     //更新个人信息
     private void updatePersonInfo(){
-        CMEHttpClientUsage.getInstanse().doUpdatePersonInfo(getSPValue(Constant.SP_USER_UUID), getSPValue(Constant.SP_PERSON_LOGO),
-                getSPValue(Constant.SP_ZHICHENG), getSPValue(Constant.SP_ZHIWU),
-                getSPValue(Constant.SP_HOSPITAL),   getSPValue(Constant.SP_KESHI),
-                getSPValue(Constant.SP_ZIP_CODE), getSPValue(Constant.SP_ADDRESS),
-                getSPValue(Constant.SP_RECIPIENT_NAME), getSPValue(Constant.SP_RECIPIENT_MOBILE),
-                getSPValue(Constant.SP_RECIPIENT_ZIP_CODE), getSPValue(Constant.SP_RECIPIENT_ADDRESS),
-                getSPValue(Constant.SP_PROVINCE_ID), getSPValue(Constant.SP_CITY_ID),
-                new JsonHttpResponseHandler() {
+        CMEHttpClientUsage.getInstanse().doUpdatePersonInfoNew(getSPValue(Constant.SP_USER_UUID),getSPValue(Constant.SP_PERSON_LOGO),
+                getSPValue(Constant.SP_ZHICHENG), getSPValue(Constant.SP_ZHIWU), getSPValue(Constant.SP_PROVINCE_LOCATION), getSPValue(Constant.SP_HOSPITAL),
+                getSPValue(Constant.SP_HOSPITAL_LEVEL), getSPValue(Constant.SP_EDUCATION),getSPValue(Constant.SP_PERSON_BIRTHDAY_YEAR), getSPValue(Constant.SP_PERSON_BIRTHDAY_MONTH),
+                getSPValue(Constant.SP_KESHI), getSPValue(Constant.SP_ADJUST_KESHI), getSPValue(Constant.SP_PHONE), getSPValue(Constant.SP_ZIP_CODE), getSPValue(Constant.SP_ADDRESS),
+                getSPValue(Constant.SP_PROVINCE_ID), getSPValue(Constant.SP_CITY_ID),Constant.CLIENT_TYPE,  new JsonHttpResponseHandler() {
                     @Override
                     public void onStart() {
                         super.onStart();

@@ -80,6 +80,12 @@
                 android:value=".activity.AttachStudyActivity"/>
         </activity>
 
+        <activity android:name=".activity.WebViewActivity"
+            android:parentActivityName=".activity.AttachStudyActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.AttachStudyActivity"/>
+        </activity>
+
         <activity android:name=".activity.LoginActivity"
             android:launchMode="singleTop">
             <intent-filter>

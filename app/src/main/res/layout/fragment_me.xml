@@ -200,39 +200,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_weight="2"
-                        android:text="@string/person_certifacation"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:id="@+id/tv_certification"
-                        android:singleLine="true"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="2"
                         android:text="@string/person_mobile"
                         android:textSize="@dimen/text_size_media"/>
 
@@ -263,6 +230,337 @@
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:id="@+id/ll_province_city"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_province_city"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_province_city"
+                        android:text=""
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:id="@+id/ll_province_location"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_province_location"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_province_location"
+                        android:text=""
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:id="@+id/ll_hospital"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_hospital"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:singleLine="true"
+                        android:id="@+id/tv_hospital"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:id="@+id/ll_hospital_level"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_hospital_level"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:singleLine="true"
+                        android:id="@+id/tv_hospital_level"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:id="@+id/ll_keshi"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_keshi"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:id="@+id/tv_keshi"
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:id="@+id/ll_adjust_keshi"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_adjust_keshi"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:id="@+id/tv_adjust_keshi"
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_phone"
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_phone"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_phone"
+                        android:text=""
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_education"
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="2"
+                        android:text="@string/person_education"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_education"
+                        android:text=""
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/layout_margin"
+                        android:textSize="@dimen/text_size_media"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:src="@mipmap/app_arrow"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/layout_margin"
+                    android:layout_marginRight="@dimen/layout_margin"
+                    android:background="@color/divider_color"/>
 
                 <LinearLayout
                     android:id="@+id/ll_zhicheng"
@@ -328,129 +626,6 @@
                         android:layout_centerVertical="true"
                         android:id="@+id/tv_zhiwu"
                         android:text=""
-                        android:singleLine="true"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:id="@+id/ll_province_city"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="2"
-                        android:text="@string/person_province_city"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv_province_city"
-                        android:text=""
-                        android:singleLine="true"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:id="@+id/ll_hospital"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="2"
-                        android:text="@string/person_hospital"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:singleLine="true"
-                        android:id="@+id/tv_hospital"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:id="@+id/ll_keshi"
-                    android:background="@color/white"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="2"
-                        android:text="@string/person_keshi"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:id="@+id/tv_keshi"
                         android:singleLine="true"
                         android:layout_marginLeft="@dimen/layout_margin"
                         android:textSize="@dimen/text_size_media"/>
@@ -556,172 +731,187 @@
                     android:background="@color/divider_color"/>
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="@dimen/layout_margin"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<LinearLayout-->
+                    <!--android:padding="@dimen/layout_padding"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:id="@+id/ll_recipient_name"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:text="@string/person_recipient_name"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:id="@+id/tv_recipient_name"-->
+                        <!--android:text=""-->
+                        <!--android:singleLine="true"-->
+                        <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@null"-->
+                        <!--android:clickable="false"-->
+                        <!--android:src="@mipmap/app_arrow"/>-->
+
+                <!--</LinearLayout>-->
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.1dp"-->
+                    <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                    <!--android:layout_marginRight="@dimen/layout_margin"-->
+                    <!--android:background="@color/divider_color"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:padding="@dimen/layout_padding"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:id="@+id/ll_recipient_mobile"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:text="@string/person_recipient_mobile"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:id="@+id/tv_recipient_mobile"-->
+                        <!--android:text=""-->
+                        <!--android:singleLine="true"-->
+                        <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@null"-->
+                        <!--android:clickable="false"-->
+                        <!--android:src="@mipmap/app_arrow"/>-->
+                <!--</LinearLayout>-->
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.1dp"-->
+                    <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                    <!--android:layout_marginRight="@dimen/layout_margin"-->
+                    <!--android:background="@color/divider_color"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:padding="@dimen/layout_padding"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:id="@+id/ll_recipient_zip_code"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:text="@string/person_recipient_zip_code"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text=""-->
+                        <!--android:singleLine="true"-->
+                        <!--android:id="@+id/tv_recipient_zip_code"-->
+                        <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@null"-->
+                        <!--android:clickable="false"-->
+                        <!--android:src="@mipmap/app_arrow"/>-->
+                <!--</LinearLayout>-->
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.1dp"-->
+                    <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                    <!--android:layout_marginRight="@dimen/layout_margin"-->
+                    <!--android:background="@color/divider_color"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:padding="@dimen/layout_padding"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:id="@+id/ll_recipient_address"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:text="@string/person_recipient_address"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text=""-->
+                        <!--android:id="@+id/tv_recipient_address"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:ellipsize="end"-->
+                        <!--android:layout_marginLeft="@dimen/layout_margin"-->
+                        <!--android:textSize="@dimen/text_size_media"/>-->
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@null"-->
+                        <!--android:clickable="false"-->
+                        <!--android:src="@mipmap/app_arrow"/>-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+            <TextView
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_width="match_parent"
+                android:padding="@dimen/layout_padding"
+                android:gravity="center"
                 android:background="@color/white"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:onClick="changPwd"
+                android:id="@+id/tv_feed_back"
+                android:textColor="@color/home_title_text_color"
+                android:textSize="@dimen/text_size_media"
+                android:text="@string/person_feed_back"
+                android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:id="@+id/ll_recipient_name"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="4"
-                        android:text="@string/person_recipient_name"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv_recipient_name"
-                        android:text=""
-                        android:singleLine="true"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:id="@+id/ll_recipient_mobile"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="4"
-                        android:text="@string/person_recipient_mobile"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv_recipient_mobile"
-                        android:text=""
-                        android:singleLine="true"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:id="@+id/ll_recipient_zip_code"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="4"
-                        android:text="@string/person_recipient_zip_code"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:singleLine="true"
-                        android:id="@+id/tv_recipient_zip_code"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:background="@color/divider_color"/>
-
-                <LinearLayout
-                    android:padding="@dimen/layout_padding"
-                    android:layout_width="match_parent"
-                    android:id="@+id/ll_recipient_address"
-                    android:background="@color/white"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_weight="4"
-                        android:text="@string/person_recipient_address"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:id="@+id/tv_recipient_address"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:layout_marginLeft="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_media"/>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:src="@mipmap/app_arrow"/>
-                </LinearLayout>
-            </LinearLayout>
             <TextView
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_width="match_parent"

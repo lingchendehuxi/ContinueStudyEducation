@@ -135,6 +135,13 @@ public class CMEHttpClientUsage {
         CMEHttpClient.get("getUserInfo", params, responseHandler);
     }
 
+    public void doGetUserInfoNew(String userUuid, JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("userUuId", userUuid);
+
+        CMEHttpClient.get("getUserInfoNew", params, responseHandler);
+    }
+
     public void doUploadUserIcon(File file, String userUuId, JsonHttpResponseHandler responseHandler) throws FileNotFoundException {
         RequestParams params = new RequestParams();
         params.put("uploadFile", file);
@@ -143,9 +150,58 @@ public class CMEHttpClientUsage {
         CMEHttpClient.post("uploadFile", params, responseHandler);
     }
 
+    /**
+     * String userUuId,
+     * String imgUrl
+     * String zhicheng
+     * String zhiwu
+     * String area
+     * String danwei
+     * String unitlevel
+     * String education
+     * String birthYear
+     * String birthMonth
+     * String keshi
+     * String jzDep
+     * String telPhone
+     * String zip
+     * String address,
+     * int provinceId
+     * int cityId
+     * String clientType
+     */
+
+    public void doUpdatePersonInfoNew(String userUuId, String imgUrl, String zhicheng, String zhiwu,
+                                      String area, String danwei, String unitLevel, String education,
+                                      String birthYear, String birthMonth, String keshi, String jzDep,
+                                      String telPhone, String zip, String address, String provinceId, String cityId,
+                                      int clientType,  JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("userUuId", userUuId);
+        params.put("imgUrl", imgUrl);
+        params.put("zhicheng", zhicheng);
+        params.put("zhiwu", zhiwu);
+        params.put("danwei", danwei);
+        params.put("keshi", keshi);
+        params.put("zip", zip);
+        params.put("address", address);
+        params.put("provinceId", provinceId);
+        params.put("cityId", cityId);
+        params.put("area", area);
+        params.put("unitlevel", unitLevel);
+        params.put("education", education);
+        params.put("birthYear", birthYear);
+        params.put("birthMonth", birthMonth);
+        params.put("jzDep", jzDep);
+        params.put("telPhone", telPhone);
+        params.put("clientType", clientType);
+
+        CMEHttpClient.get("updateUserInfoNew", params, responseHandler);
+    }
     public void doUpdatePersonInfo(String userUuId,String imgUrl, String zhicheng, String zhiwu, String hospital,
                                   String keshi, String zip, String address, String recipientsName,
-                                  String recipientsMPhone, String recipientsZip, String recipientAddress, String provinceId, String cityId, JsonHttpResponseHandler responseHandler){
+                                  String recipientsMPhone, String recipientsZip, String recipientAddress, String provinceId, String cityId,
+                                   JsonHttpResponseHandler responseHandler){
         RequestParams params = new RequestParams();
         params.put("userUuId", userUuId);
         params.put("imgUrl", imgUrl);
