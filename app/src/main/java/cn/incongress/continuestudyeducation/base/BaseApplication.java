@@ -1,8 +1,15 @@
 package cn.incongress.continuestudyeducation.base;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -16,8 +23,11 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.sina.sinavideo.sdk.utils.VDApplication;
 import com.sina.sinavideo.sdk.utils.VDResolutionManager;
 
+import java.util.List;
+
 import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.bean.Constant;
+import cn.incongress.continuestudyeducation.utils.LogUtils;
 import cn.jpush.android.api.JPushInterface;
 
 /**
@@ -70,9 +80,14 @@ public class BaseApplication extends Application {
         //初始化JPush相关的东西
         JPushInterface.init(getApplicationContext());
         JPushInterface.setDebugMode(Constant.DEBUG);
+
+
     }
 
     public static synchronized BaseApplication context() {
         return (BaseApplication) _context;
     }
+
+
+
 }

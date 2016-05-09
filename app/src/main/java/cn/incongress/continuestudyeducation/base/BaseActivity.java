@@ -1,15 +1,17 @@
 package cn.incongress.continuestudyeducation.base;
 
-import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -17,19 +19,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
-import com.avast.android.dialogs.iface.ISimpleDialogCancelListener;
 import com.avast.android.dialogs.iface.ISimpleDialogListener;
 
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.activity.LoginActivity;
 import cn.incongress.continuestudyeducation.bean.Constant;
+import cn.incongress.continuestudyeducation.receiver.HomeKeyDownBroadcastReceiver;
 import cn.incongress.continuestudyeducation.uis.StringUtils;
 import cn.incongress.continuestudyeducation.utils.ActivityUtils;
+import cn.incongress.continuestudyeducation.utils.LogUtils;
 
 /**
  * Created by Jacky on 2015/12/17.
@@ -44,6 +45,7 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     protected static final int LOAD_DATA_ERROR = 0x0003;
     protected static final int LOAD_REFRESH_SHOW = 0x0004;
 
+    private HomeKeyDownBroadcastReceiver mBroadcastReceiver = new HomeKeyDownBroadcastReceiver();
 
     /**
      * 基类维护的Handler助手
@@ -60,6 +62,9 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext = this;
         mSharedPreference = getSharedPreferences(Constant.DEFAULT_SP_NAME, MODE_PRIVATE);
+
+
+
         ActivityUtils.addActivity(this);
         setContentView(savedInstanceState);
 
@@ -72,6 +77,12 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     protected void onDestroy() {
         super.onDestroy();
         ActivityUtils.removeActivity(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mBroadcastReceiver.stopWatch(this);
     }
 
     /**
@@ -198,12 +209,13 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     protected void onResume() {
         super.onResume();
 
+        mBroadcastReceiver.startWatch(this);
+
         if(cn.incongress.continuestudyeducation.utils.StringUtils.isEmpty(getSPValue(Constant.SP_USER_UUID)) && mSharedPreference.getBoolean(Constant.SP_IS_LOG_OUT, false)){
             SimpleDialogFragment.createBuilder(this, getSupportFragmentManager()).
                     setTitle(R.string.dialog_title).setMessage(getString(R.string.logout_tips)).
                     setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).setRequestCode(200).show();
         }
-
     }
 
     @Override
@@ -232,6 +244,4 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
             mSharedPreference.edit().putBoolean(Constant.SP_IS_LOG_OUT,false).commit();
         }
     }
-
-
 }
