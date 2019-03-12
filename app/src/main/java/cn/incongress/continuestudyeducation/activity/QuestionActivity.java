@@ -15,6 +15,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import cn.incongress.continuestudyeducation.R;
@@ -88,11 +91,9 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initializeViews(Bundle savedInstanceState) {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.attach_question);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.attach_question);
 
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
         mLvQuestions = getViewById(R.id.lv_qestions);
         mRefreshLayout = getViewById(R.id.refresh_layout);
         mTvQuestionNums = getViewById(R.id.tv_question_size);
@@ -126,7 +127,6 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
             }
         });
     }
@@ -138,13 +138,8 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
         mHandler.sendEmptyMessageDelayed(455, 100);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void back(View view){
+        this.finish();
     }
 
     @Override
@@ -218,7 +213,7 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
         if (target == LOAD_DATA_COMPLETE) {
             mAdapter = new QuestionAdapter(this,mQuestions);
             mLvQuestions.setAdapter(mAdapter);
-            ((TextView)mHeaderView.findViewById(R.id.tv_question_size)).setText(getString(R.string.question_nums, mMaxQuestionCount));
+            ((TextView)mHeaderView.findViewById(R.id.tv_question_size)).setText(getString(R.string.question_nums, mMaxQuestionCount + ""));
             mRefreshLayout.setRefreshing(false);
         } else if (target == LOAD_DATA_ERROR) {
             showShortToast(R.string.net_error_check_net);
@@ -238,12 +233,17 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
 
         if(target == R.id.bt_question) {
             String content = mEtQuestionContent.getText().toString().trim();
+            try {
+                content = URLEncoder.encode(content, "UTF8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
             if(!StringUtils.isEmpty(content)) {
                 CMEHttpClientUsage.getInstanse().doSaveQuestion(mCwUuId, mUserUuId, content, new JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
-
                         try {
                             int state = response.getInt("state");
                             if(state == 1) {

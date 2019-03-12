@@ -4,7 +4,7 @@
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/lession_introduction"
-        android:title="@string/lession_introduction"
+        android:title="@string/use_intro"
         app:showAsAction="ifRoom"/>
 
     <!--<item-->

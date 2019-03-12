@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!-- From njlClient-->
+    <!-- From njl Client-->
     <color name="transparent">#00000000</color>
     <color name="simple_progress_dialog_background_color">#96000000</color>
     <color name="white">#FFFFFF</color>
@@ -13,6 +13,8 @@
     <color name="dialog_divider">#cecece</color>
     <color name="black">#000000</color>
     <color name="gray">#feCCCCCC</color>
+    <color name="item_bg">#d9d9d9</color>
+    <color name="textcolor">#757575</color>
     <color name="dark_gray">#666666</color>
     <color name="blue">#3366CC</color>
     <color name="little_gray">#f1CCCCFF</color>
@@ -55,6 +57,7 @@
     <color name="button_text_color">#f4f4f4</color>
     <color name="home_title_text_color">#008265</color>
 
+    <color name="login_background">#293d53</color>
     <color name="next_video_background">#C9F3E4</color>
-
+    <color name="fragment_background">#EBF1F5</color>
 </resources>

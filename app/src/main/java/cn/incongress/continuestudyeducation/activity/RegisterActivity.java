@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -167,16 +169,18 @@ public class RegisterActivity extends BaseActivity {
                                     @Override
                                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                         super.onSuccess(statusCode, headers, response);
-                                        LogUtils.i(TAG, response.toString());
-
+                                        Log.e("GYW",response.toString());
                                         try {
                                             int state = response.getInt("state");
-                                            String userUuid = response.getString("userUuId");
-                                            setSPValue(Constant.SP_USER_UUID, userUuid);
+                                            if(state == 1){
+                                                String userUuid = response.getString("userUuId");
+                                                setSPValue(Constant.SP_USER_UUID, userUuid);
+                                                startActivity(new Intent(mContext,HomeActivity.class));
+                                            }else {
+                                                Toast.makeText(mContext,response.getString("remark"),Toast.LENGTH_SHORT).show();
+                                            }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                        } finally {
-                                            startActivity(new Intent(mContext,HomeActivity.class));
                                         }
                                     }
                                     @Override
@@ -194,5 +198,8 @@ public class RegisterActivity extends BaseActivity {
                 SimpleDialogFragment.createBuilder(mContext,getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.dialog_context_empty).setPositiveButtonText(R.string.positive_button).show();
             }
         }
+    }
+    public void back(View view){
+        finish();
     }
 }

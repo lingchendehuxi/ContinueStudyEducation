@@ -9,6 +9,8 @@ import com.loopj.android.http.RequestParams;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import cn.incongress.continuestudyeducation.bean.Constant;
+
 /**
  * Created by Jacky on 2015/12/19.
  */
@@ -93,30 +95,39 @@ public class CMEHttpClientUsage {
         params.put("proId", proId);
         params.put("userUuId",uuId);
 
-        CMEHttpClient.get("getCourse",params,responseHandler);
+        //CMEHttpClient.get("getCourse",params,responseHandler);
+        CMEHttpClient.post("getCourseListNew",params,responseHandler);
     }
 
-    public void doGetCoursewareList(String puuId, String userUuId, JsonHttpResponseHandler responseHandler) {
+    public void doGetCoursewareList(int proId,String cuuId, String userUuId,int courseType, JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("proId", proId);
+        params.put("cuuId",cuuId);
+        params.put("userUuId", userUuId);
+        params.put("courseType",courseType);
+
+        CMEHttpClient.post("getPlateList",params,responseHandler);
+    }
+    public void doGetZhengShuList(int proId, String userUuId, JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("proId", proId);
+        params.put("userUuId", userUuId);
+        CMEHttpClient.post("getZhengShuList",params,responseHandler);
+    }
+    public void doGetCourseware(String puuId, String cwuuId,String userId,int courseType ,JsonHttpResponseHandler responseHandler) {
         RequestParams params = new RequestParams();
         params.put("puuId", puuId);
-        params.put("userUuId", userUuId);
-
-        CMEHttpClient.get("getCoursewareList",params,responseHandler);
-    }
-
-    public void doGetCourseware(String cwuuId, String userUuId, JsonHttpResponseHandler responseHandler) {
-        RequestParams params = new RequestParams();
         params.put("cwuuId", cwuuId);
-        params.put("userUuId", userUuId);
-
-        CMEHttpClient.get("getCourseware",params,responseHandler);
+        params.put("userUuId",userId);
+        params.put("courseType",courseType );
+        CMEHttpClient.post("continueToLearn",params,responseHandler);
     }
 
     public void doGetCourseInfo(String cuuId, JsonHttpResponseHandler responseHandler) {
         RequestParams params = new RequestParams();
         params.put("cuuId", cuuId);
 
-        CMEHttpClient.get("getCourseInfo", params, responseHandler);
+        CMEHttpClient.post("getCourseInfo", params, responseHandler);
     }
 
     public void doGetNotifyList(int proId, int notifyId, int count, JsonHttpResponseHandler responseHandler) {
@@ -147,7 +158,7 @@ public class CMEHttpClientUsage {
         params.put("uploadFile", file);
         params.put("userUuId", userUuId);
 
-        CMEHttpClient.post("uploadFile", params, responseHandler);
+        CMEHttpClient.post1("uploadFile", params, responseHandler);
     }
 
     /**
@@ -226,7 +237,7 @@ public class CMEHttpClientUsage {
         params.put("cwUuId", cwUuId);
         params.put("userUuId", userUuId);
 
-        CMEHttpClient.get("saveCoursewareState", params, responseHandler);
+        CMEHttpClient.get1("saveCoursewareState", params, responseHandler);
     }
 
     //获取提问借口
@@ -266,4 +277,32 @@ public class CMEHttpClientUsage {
         params.put("provinceId", provinceId);
         CMEHttpClient.get("getCityList", params, responseHandler);
     }
+
+    /**
+     * 退出登录调用(我下线了)
+     *
+     * @param userUuId
+     * @param responseHandler
+     */
+    public void doLoginOut(String userUuId, JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("userUuId", userUuId);
+        CMEHttpClient.get("loginOut", params, responseHandler);
+    }
+
+    /**
+     * 登录调用(我上线了)
+     *
+     * String userUuId,int clientType,String token
+     * @param userUuId
+     * @param responseHandler
+     */
+    public void doLoginIn(String userUuId,JsonHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("userUuId", userUuId);
+        params.put("clientType", Constant.CLIENT_TYPE);
+        params.put("token","");
+        CMEHttpClient.get("loginIn", params, responseHandler);
+    }
+
 }

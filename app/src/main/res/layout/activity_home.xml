@@ -5,8 +5,7 @@
 
  <include
      android:id="@+id/toolbar"
-     layout="@layout/include_toolbar"/>
-
+     layout="@layout/home_title"/>
     <!-- 底部菜单页面 -->
     <RadioGroup
         android:id="@+id/rg_home_bottom"
@@ -17,32 +16,32 @@
         android:background="@color/white"
         android:orientation="horizontal" >
 
+
         <RadioButton
-            android:id="@+id/rb_home"
+            android:id="@+id/rb_studycenter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="-10dp"
-            android:checked="true"
+            android:drawablePadding="-5dp"
             android:gravity="center"
             android:drawableTop="@drawable/selector_home"
-            android:text="@string/home_bottom_title"
+            android:text="@string/home_bottom_studycenter"
             android:textColor="@drawable/home_bottom_text_color"
-            android:textSize="@dimen/text_size_media" />
+            android:textSize="10sp" />
 
         <RadioButton
             android:id="@+id/rb_notification"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawablePadding="-10dp"
+            android:drawablePadding="-5dp"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
             android:drawableTop="@drawable/selector_message"
             android:textColor="@drawable/home_bottom_text_color"
             android:text="@string/home_bottom_notification"
-            android:textSize="@dimen/text_size_media" />
+            android:textSize="10sp" />
 
         <RadioButton
             android:id="@+id/rb_me"
@@ -50,12 +49,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="-10dp"
+            android:drawablePadding="-5dp"
             android:drawableTop="@drawable/selector_me"
             android:textColor="@drawable/home_bottom_text_color"
             android:gravity="center"
             android:text="@string/home_bottom_me"
-            android:textSize="@dimen/text_size_media" />
+            android:textSize="10sp" />
     </RadioGroup>
 
     <ImageView android:layout_width="match_parent"

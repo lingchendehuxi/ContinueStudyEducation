@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,149 +8,99 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/include_toolbar"/>
+        layout="@layout/home_title"/>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/situation1"
+    android:background="@color/gray"
+    android:paddingLeft="@dimen/layout_padding"
+    android:paddingRight="@dimen/layout_padding"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    android:textSize="10dp"
+    android:gravity="center"
+    android:textColor="@color/black_overlay"
+    />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:id="@+id/refresh_layout"
-        android:layout_below="@id/toolbar"
-        android:layout_height="match_parent">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/plate_introduction"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:background="@color/white"
+                android:layout_margin="7dp"
+                android:padding="7dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="@color/button_background2"/>
                 <LinearLayout
-                    android:id="@+id/ll_plate_info"
-                    android:layout_margin="@dimen/layout_margin"
-                    android:background="@android:color/white"
-                    android:padding="@dimen/layout_padding"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/detail_title"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@mipmap/plate1"/>
                     <TextView
-                        android:id="@+id/tv_plate_name"
-                        android:text="loding"
-                        android:textSize="@dimen/text_size_media"
-                        android:singleLine="true"
-                        android:textColor="@color/button_background2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/tv_plate_name"
-                        android:layout_marginTop="6dp"
-                        android:layout_height="0.1dp"
-                        android:background="@color/divider_color"/>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="6dp"
-                        android:layout_width="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_height="wrap_content">
-
-                        <roundcornerprogressbar.RoundCornerProgressBar
-                            android:layout_width="0dp"
-                            android:id="@+id/pb_study"
-                            android:layout_weight="7"
-                            android:layout_height="12dp"
-                            app:rcBackgroundColor="@color/gray"
-                            app:rcProgressColor="@color/button_background1"
-                            app:rcMax="100" />
-
-                        <TextView
-                            android:textSize="10sp"
-                            android:layout_width="0dp"
-                            android:layout_weight="4"
-                            android:id="@+id/tv_study_progress"
-                            android:layout_marginLeft="6dp"
-                            android:textColor="@color/button_background1"
-                            android:singleLine="true"
-                            android:text="loding"
-                            android:gravity="right"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/tv_plate_name"
-                        android:layout_marginTop="6dp"
-                        android:layout_height="0.1dp"
-                        android:background="@color/divider_color"/>
-
-                    <TextView
-                        android:id="@+id/tv_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/button_background2"
-                        android:textSize="@dimen/text_size_small"
-                        android:layout_marginTop="6dp"
-                        android:gravity="center_vertical"
-                        android:drawableLeft="@mipmap/lesson_intro_time"
-                        android:text="loding"/>
-
-
+                        android:textSize="15dp"
+                        android:text="课程介绍▷"
+                        android:textColor="@color/button_background1"/>
                 </LinearLayout>
-
+            </RelativeLayout>
+            <!--<android.support.v4.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:id="@+id/refresh_layout"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@id/toolbar"
+                android:layout_height="match_parent">-->
                 <LinearLayout
-                    android:layout_below="@id/ll_plate_info"
-                    android:background="@android:color/white"
-                    android:padding="@dimen/layout_padding"
-                    android:layout_marginLeft="@dimen/layout_margin"
-                    android:layout_marginRight="@dimen/layout_margin"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_plate_title"
-                        android:textSize="@dimen/text_size_media"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="6dp"
-                            android:background="@color/divider_color"/>
-
-                        <View
-                            android:layout_width="46dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="6dp"
-                            android:background="@color/button_background1"/>
-                    </RelativeLayout>
-
-                    <cn.incongress.continuestudyeducation.uis.ListViewForScrollview
-                        android:id="@+id/lv_plate_courses"
-                        android:layout_width="match_parent"
-                        android:divider="@color/white"
-                        android:layout_marginTop="6dp"
-                        android:dividerHeight="@dimen/layout_margin"
-                        android:cacheColorHint="@android:color/transparent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/empty_list_view"
-                        android:layout_width="match_parent"
-                        android:padding="@dimen/layout_padding"
-                        android:gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no_attach_data"
-                        android:visibility="gone" />
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/plate_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:padding="7dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/gray"/>
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="40dp"
+                    android:layout_height="1dp"
+                    android:background="@color/button_background1"/>
 
 
-</RelativeLayout>
+            </RelativeLayout>
+            <ExpandableListView
+                android:padding="7dp"
+                android:id="@+id/detail_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"/>
+        </LinearLayout>
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+</LinearLayout>

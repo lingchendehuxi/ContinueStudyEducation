@@ -1,39 +1,11 @@
 package cn.incongress.continuestudyeducation.bean;
 
+import cn.incongress.continuestudyeducation.uis.StringUtils;
+
 /**
  * Created by Jacky on 2015/12/24.
  */
 public class PersonBean {
-
-    /**
-     * state : 1
-     * userUuId : fgbaoj2v0t7sr6q8
-     * email : poney_ok@126.com
-     * passwrod : 123456
-     * trueName : 马闻华
-     * sex : 女
-     * imgUrl : http://114.80.201.49:8090/source/file/images/2016-03-16_1458095903977.jpg
-     * hospital : 广东省广州市番禺区中心医院
-     * danwei : 广东省广州市番禺区中心医院
-     * unitlevel : 三甲
-     * keshi : 重症
-     * jzDep : 重症医学科
-     * area : 徐汇区
-     * birthMonth : 05
-     * birthYear : 1975
-     * telPhone : 756123
-     * mobilePhone : 15000979730
-     * education : 学士
-     * zhicheng : 副高级
-     * zhiwu : 住院医师
-     * zip : 511400
-     * address : 广州番禺区市桥富华花园富裕楼608
-     * provinceId : 517
-     * province : 天津
-     * cityId : 518
-     * city : 天津
-     * updateState : 0
-     */
 
     private int state;
     private String userUuId;
@@ -57,11 +29,20 @@ public class PersonBean {
     private String zhiwu;
     private String zip;
     private String address;
-    private int provinceId;
+    private String provinceId;
     private String province;
-    private int cityId;
+    private String cityId;
     private String city;
+    private String lmIdCard;
     private int updateState;
+
+    public String getLmIdCard() {
+        return lmIdCard;
+    }
+
+    public void setLmIdCard(String lmIdCard) {
+        this.lmIdCard = lmIdCard;
+    }
 
     public int getState() {
         return state;
@@ -239,11 +220,11 @@ public class PersonBean {
         this.address = address;
     }
 
-    public int getProvinceId() {
+    public String getProvinceId() {
         return provinceId;
     }
 
-    public void setProvinceId(int provinceId) {
+    public void setProvinceId(String provinceId) {
         this.provinceId = provinceId;
     }
 
@@ -255,11 +236,11 @@ public class PersonBean {
         this.province = province;
     }
 
-    public int getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 

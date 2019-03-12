@@ -65,9 +65,15 @@ public final class StringUtils {
     }
 
     public static boolean isMobileNO(String mobiles) {
-        Pattern p = Pattern.compile("^((13[0-9])|(15[0-9])|(18[0-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
-        return m.matches();
+        /*Pattern p = Pattern.compile("^((13[0-9])|(15[0-9])|(18[0-9]))\\d{8}$");
+        Matcher m = p.matcher(mobiles);*/
+        boolean m = false;
+        if(mobiles.length()==11){
+            m = true;
+        }else{
+            m = false;
+        }
+        return m;
     }
 
     public static boolean isPassword(String password) {
@@ -102,8 +108,6 @@ public final class StringUtils {
                     return Environment.getExternalStorageDirectory() + "/"
                             + split[1];
                 }
-
-                // TODO handle non-primary volumes
             }
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {

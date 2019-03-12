@@ -3,6 +3,7 @@ package cn.incongress.continuestudyeducation.activity;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +20,8 @@ public class UseIntroActivity extends BaseActivity {
     @Override
     protected void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_use_intro);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.use_intro);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.use_intro);
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -42,5 +41,8 @@ public class UseIntroActivity extends BaseActivity {
     @Override
     protected void handleDetailMsg(Message msg) {
 
+    }
+    public void back(View view){
+        this.finish();
     }
 }

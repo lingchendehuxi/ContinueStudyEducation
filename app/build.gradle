@@ -1,34 +1,71 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    compileSdkVersion 27
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "cn.incongress.continuestudyeducation"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 2
-        versionName "1.1"
+        versionCode 9
+        versionName "2.0.3"
+        // dex突破65535的限制
+        multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86',"arm64-v8a"
+        }
     }
+    //Add the following configuration
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        Dby_Key {
+            keyAlias 'dby'
+            keyPassword 'wwl100'
+            storeFile file('D:/appkey/chy_key/Key_Incongress')
+//storeFile file('E:/A-Company_Project_Keys/参会易Android_key/Key_Incongress')
+            storePassword 'wwl100'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.Dby_Key
+        }
+        release {
+            signingConfig signingConfigs.Dby_Key
         }
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:cardview-v7:23.1.1'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.avast:android-styled-dialogs:2.2.0'
-    compile 'com.google.code.gson:gson:2.5'
-    compile 'de.greenrobot:eventbus:2.4.0'
-    compile project(':videoDemo_library_playersdk_v2.0')
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:23.4.0'
+    implementation 'com.android.support:cardview-v7:27.1.0'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.umeng.analytics:analytics:latest.integration'
+    implementation 'com.avast:android-styled-dialogs:2.2.0'
+    implementation 'com.google.code.gson:gson:2.5'
+    implementation 'de.greenrobot:eventbus:2.4.0'
+    implementation 'com.ms-square:expandableTextView:0.1.4'
+    implementation 'com.android.support:support-v4:27.1.0'
+    //noinspection GradleCompatible
+    testImplementation 'junit:junit:4.12'
+    //noinspection GradleCompatible
+    implementation project(':YCVideoPlayerLib')
+    implementation files('libs/jcore-android-1.2.6.jar')
 }

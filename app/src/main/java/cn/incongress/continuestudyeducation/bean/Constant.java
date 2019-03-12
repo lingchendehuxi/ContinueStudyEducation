@@ -27,7 +27,7 @@ public class Constant {
      * 用户id
      */
     public static final String SP_USER_UUID = "user_uuid";
-    /**
+     /**
      * 课程Id字段
      */
     public static final String SP_CUUID = "cuuId";
@@ -36,6 +36,10 @@ public class Constant {
      * 分页的长度，全局固定
      */
     public static final int PAGE_SIZE = 8;
+    /**
+     * 是否已经退出
+     */
+    public static boolean ISCUT = false;
 
     /**
      * 全部缓存文件
@@ -77,5 +81,8 @@ public class Constant {
      * 是否第一次进入video
      */
     public static final String SP_IS_FIRST_IN_VIDEO = "is_first_in_video";
+    //域名替换
+    public static final String BASE_URL_MAIN = "http://pxy.incongress.cn/CMEMain/";
+    public static final String BASE_URL_API = "http://pxy.incongress.cn/CMEApi/";
 
 }

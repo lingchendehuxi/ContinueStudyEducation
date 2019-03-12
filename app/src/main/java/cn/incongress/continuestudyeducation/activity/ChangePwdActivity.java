@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,7 @@ public class ChangePwdActivity extends BaseActivity implements ISimpleDialogList
     private static final String TAG = "ChangePwdActivity";
     private String mUserUuid;
     private EditText mEtOldPwd,mEtNewPwd,mEtNewConfirmPwd;
-
+    private TextView mTitle;
     private static final int REQUEST_CHANGE_PWD_SUCCESS = 0x110;
 
     public static final void startChangePwdActivity(Context ctx) {
@@ -54,22 +56,14 @@ public class ChangePwdActivity extends BaseActivity implements ISimpleDialogList
 
     @Override
     protected void initializeViews(Bundle savedInstanceState) {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_change_pwd);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.person_change_pwd);
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
 
         mEtOldPwd = getViewById(R.id.et_origin_pwd);
         mEtNewPwd = getViewById(R.id.et_new_pwd);
         mEtNewConfirmPwd = getViewById(R.id.et_confirm_new_pwd);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflate = getMenuInflater();
-        inflate.inflate(R.menu.save, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -153,10 +147,8 @@ public class ChangePwdActivity extends BaseActivity implements ISimpleDialogList
 
     }
 
-    @Override
-    public void onPositiveButtonClicked(int requestCode) {
-        if(requestCode == REQUEST_CHANGE_PWD_SUCCESS) {
+
+    public void back(View view) {
             ChangePwdActivity.this.finish();
-        }
     }
 }

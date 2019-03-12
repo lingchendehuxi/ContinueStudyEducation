@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.base.BaseActivity;
 import cn.incongress.continuestudyeducation.bean.Constant;
@@ -24,6 +27,8 @@ import cn.incongress.continuestudyeducation.utils.ActivityUtils;
 import cn.incongress.continuestudyeducation.utils.LogUtils;
 import cn.incongress.continuestudyeducation.utils.NetWorkUtils;
 import cn.incongress.continuestudyeducation.utils.StringUtils;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -49,8 +54,8 @@ public class LoginActivity extends BaseActivity {
         mBtLogin = getViewById(R.id.bt_login);
         mTvFirstLogin = getViewById(R.id.tv_first_login);
 
-        mTvFirstLogin.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG );
-        mTvFirstLogin.getPaint().setAntiAlias(true);
+        /*mTvFirstLogin.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG );
+        mTvFirstLogin.getPaint().setAntiAlias(true);*/
     }
 
     @Override
@@ -60,11 +65,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initializeData(Bundle savedInstanceState) {
+        String user_uuid = getSPValue(Constant.SP_USER_UUID);
         //判断是否已经登陆了
-        if(StringUtils.isEmpty(getSPValue(Constant.SP_USER_UUID))) {
+        if(StringUtils.isEmpty(user_uuid)) {
         }else {
-            ActivityUtils.finishAll();
             startActivity(new Intent(mContext, HomeActivity.class));
+            this.finish();
         }
     }
 
@@ -113,10 +119,24 @@ public class LoginActivity extends BaseActivity {
                                         int state = response.getInt("state");
 
                                         if(state == 1) {
-                                            String userUuid = response.getString("userUuId");
+                                            final String userUuid = response.getString("userUuId");
                                             setSPValue(Constant.SP_USER_UUID, userUuid);
                                             ActivityUtils.finishAll();
                                             startActivity(new Intent(mContext, HomeActivity.class));
+                                            Log.d("sgqTest", "onSuccess: "+userUuid);
+                                            JPushInterface.setAlias(LoginActivity.this,2567,userUuid);
+                                            //将当前用户和userUuid进行绑定
+                                            new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    JPushInterface.setAlias(LoginActivity.this, userUuid, new TagAliasCallback() {
+                                                        @Override
+                                                        public void gotResult(int i, String s, Set<String> set) {
+                                                            LogUtils.println("i:"+i+",s:" +s);
+                                                        }
+                                                    });
+                                                }
+                                            }).start();
                                         }else {
                                             showShortToast("登录失败："+ response.getString("remark"));
                                         }
@@ -142,7 +162,7 @@ public class LoginActivity extends BaseActivity {
                     SimpleDialogFragment.createBuilder(mContext,getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.dialog_context_pwd_format_error).setPositiveButtonText(R.string.positive_button).show();
                 }
             }else {
-                SimpleDialogFragment.createBuilder(mContext,getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.dialog_context_empty).setPositiveButtonText(R.string.positive_button).show();
+                SimpleDialogFragment.createBuilder(mContext,getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.dialog_context_format_error).setPositiveButtonText(R.string.positive_button).show();
             }
         }
     }
@@ -156,9 +176,7 @@ public class LoginActivity extends BaseActivity {
         if(StringUtils.isMobileNO(checkText)) {
             isFormatCorrect = true;
         }else {
-            if(StringUtils.isEmail(checkText)) {
-                isFormatCorrect = true;
-            }
+            isFormatCorrect = false;
         }
 
         return isFormatCorrect;

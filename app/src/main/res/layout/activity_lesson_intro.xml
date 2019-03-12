@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/include_toolbar"/>
+        layout="@layout/home_title"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -34,43 +34,56 @@
                         android:textColor="@color/home_title_text_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_large"/>
+                        android:textSize="18dp"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_marginTop="@dimen/layout_margin"
-                        android:background="@color/divider_color"/>
 
                     <TextView
                         android:id="@+id/tv_lesson_info"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/layout_margin"
-                        android:textSize="@dimen/text_size_small"/>
+                        android:textSize="@dimen/text_size_media"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_marginTop="@dimen/layout_margin"
-                        android:background="@color/divider_color"/>
 
                     <LinearLayout
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal"
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/layout_margin"
                         android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@mipmap/lesson_intro_time"/>
                         <TextView
                             android:id="@+id/tv_left_time"
-                            android:layout_width="0dp"
-                            android:textSize="@dimen/text_size_small"
-                            android:drawableLeft="@mipmap/lesson_intro_time"
-                            android:layout_weight="3"
-                            android:textColor="@color/home_title_text_color"
-                            android:gravity="left|center_vertical"
+                            android:layout_width="wrap_content"
+                            android:textSize="15dp"
+                            android:textColor="@color/button_background1"
                             android:layout_height="wrap_content" />
 
                     </LinearLayout>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@color/button_background2"
+                        android:text="@string/teacher_plate"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_lesson_plate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3dp"
+                        android:textSize="@dimen/text_size_media"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -83,12 +96,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/teacherSize"
                         android:layout_width="wrap_content"
-                        android:textSize="@dimen/text_size_small"
-                        android:textColor="@color/button_background1"
+                        android:textSize="15dp"
                         android:gravity="center_vertical"
-                        android:drawableLeft="@mipmap/lesson_intro_teachers"
                         android:text="@string/teacher_intro"
+                        android:textColor="@color/button_background2"
                         android:layout_height="wrap_content" />
 
                     <View

@@ -35,8 +35,6 @@ public class VideoDBService {
         ContentValues cv = new ContentValues();
         cv.put(VideoDBHelper.VIDEO_CWUUID, videoRecord.getCwUuid());
         cv.put( VideoDBHelper.VIDEO_USERUUID, videoRecord.getUserUuid());
-        cv.put(VideoDBHelper.VIDEO_ISFINISH, videoRecord.getIsFinish());
-        cv.put(VideoDBHelper.VIDEO_ISUPLOADSUCCESS, videoRecord.getIsUploadSuccess());
         long result = db.insert(VideoDBHelper.VIDEO_TABLE_NAME, null, cv);
         db.close();
         return result;
@@ -55,6 +53,16 @@ public class VideoDBService {
             return true;
         }
         return false;
+    }
+
+    public int queryIsVideoFinish(String cwuuid, String userUuid) {
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+        Cursor cursor = db.query(VideoDBHelper.VIDEO_TABLE_NAME,null,VideoDBHelper.VIDEO_CWUUID +"=? and " + VideoDBHelper.VIDEO_USERUUID +"=?", new String[]{cwuuid, userUuid},null,null,null);
+        if(cursor.moveToFirst()) {
+            return cursor.getInt(cursor.getColumnIndex(VideoDBHelper.VIDEO_ISFINISH));
+        }else {
+            return 0;
+        }
     }
 
     /**
@@ -76,8 +84,6 @@ public class VideoDBService {
     public int updateVideoRecord(VideoRecordBean videoRecordBean) {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put( VideoDBHelper.VIDEO_ISUPLOADSUCCESS, videoRecordBean.getIsUploadSuccess());
-        cv.put(VideoDBHelper.VIDEO_ISFINISH, videoRecordBean.getIsFinish());
 
         int result = db.update( VideoDBHelper.VIDEO_TABLE_NAME, cv, VideoDBHelper.VIDEO_CWUUID + " = ?",
                 new String[]{ videoRecordBean.getCwUuid() + "" });
@@ -97,9 +103,7 @@ public class VideoDBService {
         while(cursor.moveToNext()) {
             String cwUuid = cursor.getString(cursor.getColumnIndex(VideoDBHelper.VIDEO_CWUUID));
             String userUuid = cursor.getString(cursor.getColumnIndex(VideoDBHelper.VIDEO_USERUUID));
-            int isUpload = cursor.getInt(cursor.getColumnIndex(VideoDBHelper.VIDEO_ISUPLOADSUCCESS));
-            int isFinish = cursor.getInt(cursor.getColumnIndex(VideoDBHelper.VIDEO_ISFINISH));
-            mVideoRecords.add(new VideoRecordBean(cwUuid, userUuid, isFinish, isUpload));
+            mVideoRecords.add(new VideoRecordBean(cwUuid, userUuid));
         }
         db.close();
         return mVideoRecords;

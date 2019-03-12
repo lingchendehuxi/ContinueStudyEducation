@@ -5,13 +5,13 @@
     <color name="day_colorPrimaryDark">#0b751e</color>
     <color name="day_textColor">#333333</color>
     <color name="day_infoTextColor">#999999</color>
-    <color name="day_layout_bg_normal">#f6f6f6</color>
-    <color name="day_layout_bg_pressed">#dfdfdf</color>
+    <color name="day_layout_bg_normal">@color/white</color>
+    <color name="day_layout_bg_pressed">#f6f6f6</color>
     <color name="day_line_color">#e7e7e7</color>
     <color name="day_windows_bg">#fafafa</color>
     <color name="day_edit_color">#333333</color>
     <color name="day_edit_hit_color">#999999</color>
-
+    <color name="day_layout_bg_pressedtwo">#cce6e0</color>
     <!-- night -->
     <color name="night_colorPrimary">#008000</color>
     <color name="night_colorPrimaryDark">#0b751e</color>

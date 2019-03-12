@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 
@@ -48,6 +50,7 @@ public class EditPersonInfoActivity extends BaseActivity{
     public static final int TYPE_EDUCATION = 16;
 
     private EditText mEtInfo;
+    private TextView mTitle;
 
     public static final void startEditPersonInfoActivity(Context ctx, int infoType) {
         Intent intent = new Intent();
@@ -66,54 +69,56 @@ public class EditPersonInfoActivity extends BaseActivity{
 
     @Override
     protected void initializeViews(Bundle savedInstanceState) {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /*setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        mTitle = getViewById(R.id.home_title);
         mEtInfo = getViewById(R.id.et_info);
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
 
         if(mCurrentType == TYPE_ZHICHENG) {
-            getSupportActionBar().setTitle(R.string.person_zhicheng);
+            mTitle.setText(R.string.person_zhicheng);
             mEtInfo.setText(getSPValue(Constant.SP_ZHICHENG));
         }else if(mCurrentType == TYPE_ZHIWU) {
-            getSupportActionBar().setTitle(R.string.person_zhiwu);
+            mTitle.setText(R.string.person_zhiwu);
             mEtInfo.setText(getSPValue(Constant.SP_ZHIWU));
         }else if(mCurrentType == TYPE_HOSPITAL) {
-            getSupportActionBar().setTitle(R.string.person_hospital);
+            mTitle.setText(R.string.person_hospital);
             mEtInfo.setText(getSPValue(Constant.SP_HOSPITAL));
         }else if(mCurrentType == TYPE_KESHI) {
-            getSupportActionBar().setTitle(R.string.person_keshi);
+            mTitle.setText(R.string.person_keshi);
             mEtInfo.setText(getSPValue(Constant.SP_KESHI));
         }else if(mCurrentType == TYPE_ZIPCODE) {
-            getSupportActionBar().setTitle(R.string.person_zip_code);
+            mTitle.setText(R.string.person_zip_code);
             mEtInfo.setText(getSPValue(Constant.SP_ZIP_CODE));
         }else if(mCurrentType == TYPE_ADDRESS) {
-            getSupportActionBar().setTitle(R.string.person_address);
+            mTitle.setText(R.string.person_address);
             mEtInfo.setText(getSPValue(Constant.SP_ADDRESS));
         }else if(mCurrentType == TYPE_RECIEPIENT_NAME) {
-            getSupportActionBar().setTitle(R.string.person_recipient_name);
+            mTitle.setText(R.string.person_recipient_name);
             mEtInfo.setText(getSPValue(Constant.SP_RECIPIENT_NAME));
         }else if(mCurrentType == TYPE_RECIEPIENT_MOBILE) {
-            getSupportActionBar().setTitle(R.string.person_recipient_mobile);
+            mTitle.setText(R.string.person_recipient_mobile);
             mEtInfo.setText(getSPValue(Constant.SP_RECIPIENT_MOBILE));
         }else if(mCurrentType == TYPE_RECIEPIENT_ZIPCODE) {
-            getSupportActionBar().setTitle(R.string.person_recipient_zip_code);
+            mTitle.setText(R.string.person_recipient_zip_code);
             mEtInfo.setText(getSPValue(Constant.SP_RECIPIENT_ZIP_CODE));
         }else if(mCurrentType == TYPE_RECIEPIENT_ADDRESS) {
-            getSupportActionBar().setTitle(R.string.person_recipient_address);
+            mTitle.setText(R.string.person_recipient_address);
             mEtInfo.setText(getSPValue(Constant.SP_RECIPIENT_ADDRESS));
         } else if(mCurrentType == TYPE_PROVINCE_LOCATION) {
-            getSupportActionBar().setTitle(R.string.person_province_location);
+            mTitle.setText(R.string.person_province_location);
             mEtInfo.setText(getSPValue(Constant.SP_PROVINCE_LOCATION));
         } else if(mCurrentType == TYPE_HOSPITAL_LEVEL) {
-            getSupportActionBar().setTitle(R.string.person_hospital_level);
+            mTitle.setText(R.string.person_hospital_level);
             mEtInfo.setText(getSPValue(Constant.SP_HOSPITAL_LEVEL));
         } else if(mCurrentType == TYPE_ADJUST_KESHI) {
-            getSupportActionBar().setTitle(R.string.person_adjust_keshi);
+            mTitle.setText(R.string.person_adjust_keshi);
             mEtInfo.setText(getSPValue(Constant.SP_ADJUST_KESHI));
         }else if(mCurrentType == TYPE_PHONE) {
-            getSupportActionBar().setTitle(R.string.person_phone);
+            mTitle.setText(R.string.person_phone);
             mEtInfo.setText(getSPValue(Constant.SP_PHONE));
         }else if(mCurrentType == TYPE_EDUCATION) {
-            getSupportActionBar().setTitle(R.string.person_education);
+            mTitle.setText(R.string.person_education);
             mEtInfo.setText(getSPValue(Constant.SP_EDUCATION));
         }
 
@@ -135,12 +140,9 @@ public class EditPersonInfoActivity extends BaseActivity{
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater =getMenuInflater();
-        inflater.inflate(R.menu.save,menu);
-        return true;
-    }
+   public void back(View view){
+       finish();
+   }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

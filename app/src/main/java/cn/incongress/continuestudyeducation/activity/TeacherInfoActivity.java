@@ -51,11 +51,9 @@ public class TeacherInfoActivity extends BaseActivity {
 
     @Override
     protected void initializeViews(Bundle savedInstanceState) {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.teacher_info);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.teacher_info);
 
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
         mTvName = getViewById(R.id.tv_teacher_name);
         mTvRemark = getViewById(R.id.tv_teacher_info);
         mIvTeacher = getViewById(R.id.iv_teacher);
@@ -66,13 +64,9 @@ public class TeacherInfoActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+
+    public void back(View v) {
+            this.finish();;
     }
 
     @Override

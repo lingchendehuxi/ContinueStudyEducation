@@ -9,8 +9,11 @@
     <dimen name="layout_padding">12dp</dimen>
     <dimen name="layout_margin">12dp</dimen>
     <dimen name="divider_height">0.1dp</dimen>
+    <dimen name="new_layout_margin">16dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="radio_button_conner_radius">5dp</dimen>
     <dimen name="radio_button_stroke_border">1dp</dimen>
+    <dimen name="img_width">336dp</dimen>
+    <dimen name="img_height">475dp</dimen>
 </resources>

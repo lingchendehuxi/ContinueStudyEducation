@@ -18,13 +18,17 @@
 package cn.incongress.continuestudyeducation.adapter;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,55 +40,173 @@ import java.util.List;
 import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.bean.CoursewareArrayBean;
 import cn.incongress.continuestudyeducation.bean.PlateArrayBean;
+import cn.incongress.continuestudyeducation.bean.PlateDetailBean;
 
-public class CourseListAdapter extends BaseAdapter {
-    private Context mContext;
-    private List<CoursewareArrayBean> mCoursesName;
+public class CourseListAdapter implements ExpandableListAdapter {
+    private Context context;
+    private LayoutInflater inflater;
+    private List<PlateDetailBean.PlateArrayBean> list;
 
-    public CourseListAdapter(Context ctx, List<CoursewareArrayBean> coursesName) {
-        this.mContext = ctx;
-        this.mCoursesName = coursesName;
+    public CourseListAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+        this.context = context;
+    }
+
+    public void setData(List<PlateDetailBean.PlateArrayBean> items) {
+        this.list = items;
     }
 
     @Override
-    public int getCount() {
-        return mCoursesName.size();
+    public void registerDataSetObserver(DataSetObserver observer) {
+
     }
 
     @Override
-    public Object getItem(int position) {
-        return mCoursesName.get(position);
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public int getGroupCount() {
+        return list.size();
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+    public int getChildrenCount(int groupPosition) {
 
-        if(convertView == null) {
-            holder = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_plate_course, null);
-            holder.tvCourseName =  (TextView)convertView.findViewById(R.id.tv_course_name);
-            holder.ivVideoInfo = (ImageView) convertView.findViewById(R.id.iv_video_pic);
+        return list.get(groupPosition).getCwArray().size();
+    }
+
+    @Override
+    public PlateDetailBean.PlateArrayBean getGroup(int groupPosition) {
+        return list.get(groupPosition);
+    }
+
+    @Override
+    public PlateDetailBean.PlateArrayBean.CwArrayBean getChild(int groupPosition, int childPosition) {
+        return list.get(groupPosition).getCwArray().get(childPosition);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+
+        return childPosition;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        CurrentHolder holder;
+        //currentBean  = getGroup(groupPosition);
+        PlateDetailBean.PlateArrayBean plateArrayBean = getGroup(groupPosition);
+        if (convertView == null) {
+            holder = new CurrentHolder();
+            convertView = inflater.inflate(R.layout.item_plate_current, parent, false);
+            holder.current_title = (TextView) convertView.findViewById(R.id.current_title);
+            holder.current_study = (TextView) convertView.findViewById(R.id.current_study);
+            holder.current_direction = (ImageView) convertView.findViewById(R.id.current_direction);
             convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder) convertView.getTag();
+        } else {
+            holder = (CurrentHolder) convertView.getTag();
         }
+        if(isExpanded){
+            holder.current_direction.setImageResource(R.mipmap.up);
+        }else{
+            holder.current_direction.setImageResource(R.mipmap.down); }
+        holder.current_title.setText(plateArrayBean.getPlateName());
+        holder.current_study.setText("已学习："+plateArrayBean.getStudyJd());
+        return convertView;
+    }
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        ChooseHolder holder;
+        PlateDetailBean.PlateArrayBean.CwArrayBean cwArrayBean =  getChild(groupPosition, childPosition);
+        if (convertView == null) {
+            holder = new ChooseHolder();
+            convertView = inflater.inflate(R.layout.item_plate_group, parent, false);
+            convertView.setTag(holder);
+        } else {
+            holder = (ChooseHolder) convertView.getTag();
+        }
+        holder.group_title = (TextView) convertView.findViewById(R.id.group_title);
+        holder.group_btn = (TextView) convertView.findViewById(R.id.group_btn);
+        holder.group_img = (ImageView) convertView.findViewById(R.id.plate_group_img);
 
-        holder.tvCourseName.setText(mCoursesName.get(position).getCoursewareTitle());
-        if(!mCoursesName.get(position).getPicUrl().equals(holder.ivVideoInfo.getTag())) {
-            holder.ivVideoInfo.setTag(mCoursesName.get(position).getPicUrl());
-            ImageLoader.getInstance().displayImage(mCoursesName.get(position).getPicUrl(), holder.ivVideoInfo);
+        if(cwArrayBean.getType() == 1){
+            holder.group_btn.setText("回顾");
+            holder.group_btn.setVisibility(View.VISIBLE);
+            holder.group_img.setImageResource(R.mipmap.study_play);
+            holder.group_title.setTextColor(context.getResources().getColor(R.color.button_background1));
+        }else{
+            if(cwArrayBean.getCanStudy() == 1){
+                holder.group_img.setImageResource(R.mipmap.study_play);
+                holder.group_btn.setVisibility(View.VISIBLE);
+                holder.group_btn.setText("开始学习");
+                holder.group_title.setTextColor(context.getResources().getColor(R.color.button_background1));
+            }else{
+                holder.group_btn.setVisibility(View.GONE);
+                holder.group_title.setTextColor(context.getResources().getColor(R.color.dark_gray));
+                holder.group_img.setImageResource(R.mipmap.study_play1);
+            }
         }
+        holder.group_title.setText(cwArrayBean.getCwName());
         return convertView;
     }
 
-    private class ViewHolder {
-        TextView tvCourseName;
-        ImageView ivVideoInfo;
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public void onGroupExpanded(int groupPosition) {
+
+    }
+
+    @Override
+    public void onGroupCollapsed(int groupPosition) {
+
+    }
+
+    @Override
+    public long getCombinedChildId(long groupId, long childId) {
+        return 0;
+    }
+
+    @Override
+    public long getCombinedGroupId(long groupId) {
+        return 0;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public boolean isChildSelectable(int arg0, int arg1) {
+        return true;
+    }
+
+
+    private static class ChooseHolder {
+        TextView group_title;
+        TextView group_btn;
+        ImageView group_img;
+    }
+
+    private static class CurrentHolder {
+        TextView current_title,current_study;ImageView current_direction;
+    }
+
 }

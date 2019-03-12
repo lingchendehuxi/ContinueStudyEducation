@@ -15,6 +15,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.incongress.continuestudyeducation.R;
@@ -48,10 +49,9 @@ public class WebViewActivity extends BaseActivity {
         mUrl = getIntent().getStringExtra(EXTRA_URL);
         mTitle = getIntent().getStringExtra(EXTRA_TITLE);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(mTitle);
+
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
+        ((TextView)getViewById(R.id.home_title)).setText(mTitle);
     }
 
     @Override
@@ -133,11 +133,7 @@ public class WebViewActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+    public void back(View view) {
             this.finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

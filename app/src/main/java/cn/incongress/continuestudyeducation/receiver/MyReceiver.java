@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,7 +18,9 @@ import java.io.InputStream;
 import java.util.List;
 
 import cn.incongress.continuestudyeducation.R;
+import cn.incongress.continuestudyeducation.activity.HomeActivity;
 import cn.incongress.continuestudyeducation.activity.LoginActivity;
+import cn.incongress.continuestudyeducation.base.BaseApplication;
 import cn.incongress.continuestudyeducation.bean.Constant;
 import cn.incongress.continuestudyeducation.utils.ActivityUtils;
 import cn.incongress.continuestudyeducation.utils.LogUtils;
@@ -49,7 +52,8 @@ public class MyReceiver extends BroadcastReceiver {
 				sp.edit().clear().commit();
 				sp.edit().putBoolean(Constant.SP_IS_LOG_OUT, true).commit();
 
-				if(isAppOnForeground(context) && sp.getBoolean(Constant.SP_IS_LOG_OUT,false)) {
+				//if(isAppOnForeground(context) && sp.getBoolean(Constant.SP_IS_LOG_OUT,false)) {
+				if(isAppOnForeground(context)) {
 					Toast.makeText(context, R.string.logout_tips, Toast.LENGTH_LONG).show();
 
 					ActivityUtils.finishAll();
@@ -62,8 +66,12 @@ public class MyReceiver extends BroadcastReceiver {
 			}
 		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
 			Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
-
-			Intent i = new Intent(context, LoginActivity.class);
+			Intent i;
+			if(TextUtils.isEmpty(BaseApplication.user_is_login())){
+				i = new Intent(context,LoginActivity.class);
+			}else {
+			 	i = new Intent(context, HomeActivity.class);
+			}
 			i.putExtras(bundle);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			context.startActivity(i);
@@ -72,8 +80,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 	//在进程中去寻找当前APP的信息，判断是否在前台运行
 	private boolean isAppOnForeground(Context context) {
-		ActivityManager activityManager =(ActivityManager) context.getSystemService(
-				Context.ACTIVITY_SERVICE);
+		ActivityManager activityManager =(ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		String packageName = context.getPackageName();
 		List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
 		if (appProcesses == null)

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -61,12 +62,10 @@ public class CityActivity extends BaseActivity {
     @Override
     protected void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_city);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.plate_detail);
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_province_city);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.plate_detail);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.person_province_city);
 
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
         mProvinceId = getIntent().getIntExtra(INTENT_PROVINCE_ID, 1);
         mChooseProvinceName = getIntent().getStringExtra(INTENT_PROVINCE_NAME);
         if(StringUtils.isEmpty(getSPValue(Constant.SP_CITY_ID))) {
@@ -162,5 +161,8 @@ public class CityActivity extends BaseActivity {
                 }
             });
         }
+    }
+    public void back(View v){
+        CityActivity.this.finish();
     }
 }

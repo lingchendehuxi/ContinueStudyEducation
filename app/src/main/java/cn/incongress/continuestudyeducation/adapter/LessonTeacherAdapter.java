@@ -15,14 +15,15 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.List;
 
 import cn.incongress.continuestudyeducation.R;
+import cn.incongress.continuestudyeducation.bean.LessonInfoBean;
 import cn.incongress.continuestudyeducation.bean.TeacherArrayBean;
 import cn.incongress.continuestudyeducation.uis.CircleImageView;
 
 public class LessonTeacherAdapter extends BaseAdapter {
     private Context mContext;
-    private List<TeacherArrayBean> mTeachers;
+    private List<LessonInfoBean.TeacherArrayBean> mTeachers;
 
-    public LessonTeacherAdapter(Context ctx, List<TeacherArrayBean> beans) {
+    public LessonTeacherAdapter(Context ctx, List<LessonInfoBean.TeacherArrayBean> beans) {
         this.mContext = ctx;
         this.mTeachers= beans;
     }

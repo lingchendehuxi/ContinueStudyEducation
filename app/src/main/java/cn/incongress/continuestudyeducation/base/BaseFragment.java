@@ -1,6 +1,7 @@
 package cn.incongress.continuestudyeducation.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,9 +10,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import cn.incongress.continuestudyeducation.activity.HomeActivity;
 import cn.incongress.continuestudyeducation.bean.Constant;
 import cn.incongress.continuestudyeducation.uis.StringUtils;
 
@@ -33,6 +37,20 @@ public abstract class BaseFragment extends Fragment {
     public SharedPreferences mSharedPreference;
 
     protected ProgressDialog mProgressDialog;
+
+    protected HomeActivity mActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mActivity = (HomeActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mActivity = null;
+    }
 
     /**
      * 基类维护的Handler助手

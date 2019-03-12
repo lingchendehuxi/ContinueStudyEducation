@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">培训易</string>
-    
+    <string name="app_name">CMACME 5C在线课程</string>
+
     <!-- 主页 -->
     <string name="home_bottom_title">首页</string>
     <string name="home_title">重症检测的患者安全</string>
@@ -8,25 +8,25 @@
     <string name="learning_progress">学习进度:</string>
     <string name="learning_progress_num">%1$s/%2$s</string>
     <string name="use_intro">使用说明</string>
-    <string name="situation1">您尚未获取的证书资格，请完成课程学习后在网页端通过考试并完成调研，待管理员审核后即可获得证书</string>
+    <string name="situation1">请完成课程学习，通过网页端考试及调研后待管理员审核认可获取证书。</string>
     <string name="situation2">考试得分为：%1$s分 \n恭喜您通过本次考试！待管理员审核通过后，即可在网页版平台下载电子证书</string>
     <string name="situation3">考试得分为：%1$s分 \n恭喜您已获得证书资格，请至网页版平台下载电子证书！</string>
-    <string name="home_bottom_notification">通知</string>
-
-
+    <string name="home_bottom_notification">消息中心</string>
 
     <string name="home_title_icon">&#xf275;</string>
     <string name="map_icon">&#xf278;</string>
 
     <!-- Dialog -->
     <string name="no_data">暂无数据</string>
-    <string name="plate_detail">板块详情</string>
-
+    <string name="plate_detail">课程详情</string>
+    <string name="studycenter_title">&#160;&#160;&#160;&#160;%1$s</string>
     <!-- 学习进度 -->
     <string name="study_progress_with_percent">(当前学习进度：%1$s)</string>
-    <string name="study_end_time_with_percent">距课程结束时间  %1$s 天</string>
-    <string name="plate_attach">课件(%1$s)</string>
+    <string name="study_end_time_with_percent">%1$s 天后结束</string>
+    <string name="plate_attach">课件列表(%1$s)</string>
     <string name="no_attach_data">暂无课件</string>
+    <string name="study_position1">您已学习%1$s</string>
+    <string name="study_position2">板块(%1$s)</string>
 
     <!-- 课件学习 -->
     <string name="attach_study">课件学习</string>
@@ -35,13 +35,13 @@
     <string name="next_study">下一课</string>
     <string name="next_teacher_name">讲师:%1$s</string>
     <string name="update_video_record">更新学习进度中...</string>
-    <string name="menu_question">提问</string>
-
+    <string name="menu_question">课件答疑</string>
+    <string name="menu_num">课件(%1$s)</string>
     <!-- 讲师简介 -->
     <string name="teacher_info">讲师简介</string>
 
     <!--个人中心 -->
-    <string name="home_bottom_me">我</string>
+    <string name="home_bottom_me">个人中心</string>
     <string name="person_info">个人中心</string>
     <string name="person_logo">头像</string>
     <string name="person_name">姓名</string>
@@ -55,6 +55,7 @@
     <string name="person_education">学历</string>
     <string name="person_zhiwu">职务</string>
     <string name="person_province_city">地区</string>
+    <string name="person_my_studys">我的证书</string>
     <string name="person_province_location">区县</string>
     <string name="person_hospital">单位</string>
     <string name="person_hospital_level">单位等级</string>
@@ -65,31 +66,32 @@
     <string name="person_feed_back">意见反馈</string>
     <string name="person_change_pwd">修改密码</string>
     <string name="person_logout">退出登录</string>
-    <string name="person_tips">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效！\n 如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱sharon</string>
     <string name="person_address">地址</string>
     <string name="person_recipient_name">收件人姓名</string>
     <string name="person_recipient_mobile">收件人手机</string>
     <string name="person_recipient_zip_code">收件人地址邮编</string>
     <string name="person_recipient_address">收件人地址</string>
     <string name="person_info_save">保存</string>
-    <string name="person_tips_info">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效! \n如需更改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请发送至邮箱：2384474492@qq.com</string>
+    <string name="person_tips_info">请在考试前完善资料信息真实有效，确保通过考核后所获得的证书真实有效！如需修改姓名、性别、出生日期、身份证号码、手机号、邮箱地址，请在PC端登录进行修改。</string>
     <string name="person_url_feed_back">http://weixin.incongress.cn/xhy/xhyHtml5/html/feedback.html?userId=%1$s&#038;project=CME</string>
 
     <!-- 登录界面 -->
-    <string name="login_enter_mobile_email">请输入手机号或邮箱</string>
-    <string name="login_enter_pwd">请输入密码</string>
+    <string name="login_enter_mobile_email">手机号</string>
+    <string name="login_enter_pwd">密&#160;&#160;&#160;&#160;&#160;&#160;码</string>
     <string name="login_forget_pwd">忘记密码</string>
-    <string name="login_login">登       录</string>
+    <string name="login_login">登&#160;&#160;&#160;&#160;&#160;&#160;录</string>
+    <string name="register_login">确&#160;&#160;&#160;&#160;&#160;&#160;认</string>
     <string name="login_first_login">首次登录</string>
 
     <!--  注册界面 -->
-    <string name="register_identify_code">请输入验证码</string>
+    <string name="register_identify_code">验证码</string>
     <string name="register_get_identify_code">获取验证码</string>
-    <string name="register_confirm_pwd">请再次输入密码</string>
+    <string name="register_confirm_pwd">再次输入密码</string>
 
     <!-- 课程介绍 -->
     <string name="lesson_study_number">参与学员%1$s</string>
-    <string name="teacher_intro">本次课程讲师介绍</string>
+    <string name="teacher_intro">讲师简介（%1$s）</string>
+    <string name="teacher_plate">版块介绍：</string>
 
     <!-- 课件答疑 -->
     <string name="attach_question">课件答疑</string>
@@ -99,17 +101,17 @@
     <string name="question_success">提问成功</string>
 
     <!-- 提示信息 -->
-    <string name="tips_login">正在登陆</string>
-    <string name="dialog_context_empty">手机号或邮箱不能为空哦</string>
+    <string name="tips_login">正在登录</string>
+    <string name="dialog_context_empty">手机号不能为空哦</string>
     <string name="dialog_context2_empty">不能有空哦</string>
-    <string name="dialog_context_format_error">手机号或邮箱格式不对，请重新输入</string>
+    <string name="dialog_context_format_error">请输入正确的手机号</string>
     <string name="dialog_context_pwd_format_error">密码格式不对，请重新输入</string>
     <string name="dialog_context_pwd_twice_check_error">您输入的两次密码不一致，请重新输入</string>
     <string name="dialog_title">温馨提示</string>
     <string name="positive_button">确定</string>
     <string name="negative_button">取消</string>
     <string name="network_not_enbale">当前网络不可用或者非常缓慢</string>
-    <string name="retry_post">尝试再次获取数据[%1s]</string>
+    <string name="retry_post">尝试再次获取数据[%1$s]</string>
     <string name="connect_timeout">连接超时</string>
     <string name="loading_more_tips">loading...more..</string>
     <string name="no_more_data">没有更多数据了</string>
@@ -126,7 +128,7 @@
     <string name="popup_album">相册</string>
     <string name="popup_take_photo">拍照</string>
     <string name="popup_cancel">取消</string>
-    <string name="person_edit_info_tips">不许为空，请重新输入</string>
+    <string name="person_edit_info_tips">不能为空，请重新输入</string>
     <string name="logout_tips">您的账号已在其他位置登录，请重新登录...</string>
     <string name="get_date_tips">获取数据失败...</string>
 
@@ -148,6 +150,19 @@
     <string name="deleting">正在删除…</string>
     <string name="delete_success">删除成功</string>
     <string name="delete_faile">删除失败</string>
+    <string name="net_error_check_net">网络不给力，请您检查网络 </string>
 
-    <!-- china app -->
+    <!-- 2017-04-05 -->
+    <string name="home_bottom_mystudys">我的课程</string>
+    <string name="home_bottom_studycenter">课程中心</string>
+
+
+    <!-- 我的课程 -->
+    <string name="mystudy_addcourse">添加课程</string>
+    <string name="mystudy_studytitle">正在学习：</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_certificate">MyCertificateActivity</string>
+    <string name="title_activity_certificate">CertificateActivity</string>
 </resources>

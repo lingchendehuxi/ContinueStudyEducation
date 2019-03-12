@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,11 +46,9 @@ public class ProvinceActivity extends BaseActivity {
     protected void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_province);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.person_province_city);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.person_province_city);
 
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
         mInstance = this;
     }
 
@@ -114,6 +113,9 @@ public class ProvinceActivity extends BaseActivity {
         });
     }
 
+    public void back(View view){
+        this.finish();
+    }
     @Override
     protected void handleDetailMsg(Message msg) {
         int target = msg.what;

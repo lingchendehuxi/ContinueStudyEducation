@@ -9,7 +9,8 @@ import cn.incongress.continuestudyeducation.bean.Constant;
  * @since 2012-8-15
  * TODO 发布的时候清空这些方法
  */
-public final class LogUtils {
+public final class
+LogUtils {
 	
 	public static void println(String msg) {
 		if (Constant.DEBUG) {

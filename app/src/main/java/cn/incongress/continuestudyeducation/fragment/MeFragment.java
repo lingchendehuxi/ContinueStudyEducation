@@ -2,6 +2,7 @@ package cn.incongress.continuestudyeducation.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 import com.avast.android.dialogs.iface.ISimpleDialogListener;
@@ -36,9 +38,12 @@ import java.util.Date;
 import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.activity.ChangePwdActivity;
 import cn.incongress.continuestudyeducation.activity.EditPersonInfoActivity;
+import cn.incongress.continuestudyeducation.activity.HomeActivity;
 import cn.incongress.continuestudyeducation.activity.LoginActivity;
+import cn.incongress.continuestudyeducation.activity.MyCertificateActivity;
 import cn.incongress.continuestudyeducation.activity.ProvinceActivity;
 import cn.incongress.continuestudyeducation.activity.WebViewActivity;
+import cn.incongress.continuestudyeducation.base.BaseActivity;
 import cn.incongress.continuestudyeducation.base.BaseFragment;
 import cn.incongress.continuestudyeducation.bean.Constant;
 import cn.incongress.continuestudyeducation.bean.PersonBean;
@@ -49,6 +54,7 @@ import cn.incongress.continuestudyeducation.uis.IconChoosePopupWindow;
 import cn.incongress.continuestudyeducation.uis.StringUtils;
 import cn.incongress.continuestudyeducation.utils.ActivityUtils;
 import cn.incongress.continuestudyeducation.utils.LogUtils;
+import cn.incongress.continuestudyeducation.utils.ToastUtils;
 import cz.msebera.android.httpclient.Header;
 import de.greenrobot.event.EventBus;
 
@@ -58,7 +64,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
     private SwipeRefreshLayout mRefreshLayout;
     private CircleImageView mIvIcon;
     private TextView mTvName,mTvSex, mTvEmail, mTvBirthday, mTvMobile,
-                mTvZhiCheng, mTvZhiWu, mTvProvinceCity, mTvHospital, mTvKeshi, mTvZipCode,mTvAddress;
+                mTvZhiCheng, mTvZhiWu, mTvProvinceCity, mTvHospital, mTvKeshi, mTvZipCode,mTvAddress,mTvIdCard;
     private TextView mTvProvinceLocation,mTvHospitalLevel, mTvAjustKeshi, mTvPhone, mTvEducation;
     private TextView mTvFeedback;
     private IconChoosePopupWindow mIconChoosePopupWindow;
@@ -87,11 +93,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         int target = msg.what;
 
         if(target == LOAD_DATA_COMPLETE) {
-            ImageLoader.getInstance().displayImage(mPersonBean.getImgUrl(), mIvIcon);
+            if(mPersonBean.getImgUrl().length()!=0){
+                ImageLoader.getInstance().displayImage(mPersonBean.getImgUrl(), mIvIcon);
+            }
             mTvName.setText(mPersonBean.getTrueName());
             mTvSex.setText(mPersonBean.getSex());
             mTvEmail.setText(mPersonBean.getEmail());
-            mTvBirthday.setText(mPersonBean.getBirthYear()+"-" + mPersonBean.getBirthMonth());
+            mTvBirthday.setText(mPersonBean.getBirthYear()+ "-"+mPersonBean.getBirthMonth());
             mTvMobile.setText(mPersonBean.getMobilePhone());
             mTvZhiCheng.setText(mPersonBean.getZhicheng());
             mTvZhiWu.setText(mPersonBean.getZhiwu());
@@ -104,6 +112,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             mTvAjustKeshi.setText(mPersonBean.getJzDep());
             mTvPhone.setText(mPersonBean.getTelPhone());
             mTvEducation.setText(mPersonBean.getEducation());
+            mTvIdCard.setText(mPersonBean.getLmIdCard());
 
             mTvProvinceCity.setText(mPersonBean.getProvince() + " " + mPersonBean.getCity());
             mRefreshLayout.setRefreshing(false);
@@ -221,6 +230,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         mTvKeshi = (TextView) view.findViewById(R.id.tv_keshi);
         mTvZipCode = (TextView) view.findViewById(R.id.tv_zip_code);
         mTvAddress = (TextView) view.findViewById(R.id.tv_address);
+        mTvIdCard = (TextView) view.findViewById(R.id.tv_certifacation);
         mTvFeedback = (TextView) view.findViewById(R.id.tv_feed_back);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
 
@@ -248,7 +258,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
      * @param view
      */
     private void initEvents(View view) {
-        view.findViewById(R.id.rl_icon).setOnClickListener(this);
+        view.findViewById(R.id.ll_icon).setOnClickListener(this);
         view.findViewById(R.id.ll_zhicheng).setOnClickListener(this);
         view.findViewById(R.id.ll_zhiwu).setOnClickListener(this);
         view.findViewById(R.id.ll_province_city).setOnClickListener(this);
@@ -265,6 +275,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
         view.findViewById(R.id.ll_phone).setOnClickListener(this);
         view.findViewById(R.id.ll_education).setOnClickListener(this);
 
+        view.findViewById(R.id.ll_my_studys).setOnClickListener(this);
     }
 
     private void initDatas() {
@@ -300,6 +311,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
+                String erroInfo = responseString +"_" + throwable.getMessage();
+                LogUtils.println("erroInfo:" + erroInfo);
             }
         });
     }
@@ -307,7 +320,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rl_icon:
+            case R.id.ll_icon:
                 initPopupWindow();
                 mIconChoosePopupWindow.showAtLocation(mRefreshLayout, Gravity.BOTTOM, 0, 0);
                 lightOff();
@@ -363,6 +376,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
             case R.id.tv_feed_back:
                 WebViewActivity.startWebViewActivity(getActivity(),getString(R.string.person_url_feed_back, getSPValue(Constant.SP_USER_UUID)), getString(R.string.person_feed_back));
                 break;
+            //TODO 2017-04-05 添加学习过额课程的跳转页面
+            case R.id.ll_my_studys:
+               startActivity(new Intent(getActivity(), MyCertificateActivity.class));
+                break;
         }
     }
 
@@ -405,10 +422,32 @@ public class MeFragment extends BaseFragment implements View.OnClickListener,ISi
 
     @Override
     public void onPositiveButtonClicked(int requestCode) {
-        clearAllSPValue();
+//        ((BaseActivity)getActivity()).stopWatch();
 
-        ActivityUtils.finishAll();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        CMEHttpClientUsage.getInstanse().doLoginOut(getSPValue(Constant.SP_USER_UUID), new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+
+                String userUuid = getSPValue(Constant.SP_USER_UUID);
+                CMEHttpClientUsage.getInstanse().doLoginOut(userUuid,new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+                        LogUtils.println("stopWatch:" + response.toString());
+                    }
+                });
+
+                clearAllSPValue();
+
+                ActivityUtils.finishAll();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+
+
+
+
     }
 
     @Override

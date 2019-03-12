@@ -1,36 +1,40 @@
 package cn.incongress.continuestudyeducation.base;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 import com.avast.android.dialogs.iface.ISimpleDialogListener;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.umeng.analytics.MobclickAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import cn.incongress.continuestudyeducation.R;
 import cn.incongress.continuestudyeducation.activity.LoginActivity;
 import cn.incongress.continuestudyeducation.bean.Constant;
-import cn.incongress.continuestudyeducation.receiver.HomeKeyDownBroadcastReceiver;
+import cn.incongress.continuestudyeducation.service.CMEHttpClientUsage;
 import cn.incongress.continuestudyeducation.uis.StringUtils;
 import cn.incongress.continuestudyeducation.utils.ActivityUtils;
-import cn.incongress.continuestudyeducation.utils.LogUtils;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Jacky on 2015/12/17.
@@ -45,8 +49,7 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     protected static final int LOAD_DATA_ERROR = 0x0003;
     protected static final int LOAD_REFRESH_SHOW = 0x0004;
 
-    private HomeKeyDownBroadcastReceiver mBroadcastReceiver = new HomeKeyDownBroadcastReceiver();
-
+    private InputMethodManager manager;
     /**
      * 基类维护的Handler助手
      */
@@ -56,14 +59,14 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
         };
     };
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         mContext = this;
         mSharedPreference = getSharedPreferences(Constant.DEFAULT_SP_NAME, MODE_PRIVATE);
-
-
 
         ActivityUtils.addActivity(this);
         setContentView(savedInstanceState);
@@ -82,8 +85,14 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     @Override
     protected void onPause() {
         super.onPause();
-        mBroadcastReceiver.stopWatch(this);
+        MobclickAgent.onPause(this);
+//        mBroadcastReceiver.stopWatch(this, getSPValue(Constant.SP_USER_UUID));
     }
+
+//    public void stopWatch() {
+//        if(mContext != null)
+//            mBroadcastReceiver.stopWatch(this, getSPValue(Constant.SP_USER_UUID));
+//    }
 
     /**
      * 存储sp值
@@ -148,6 +157,7 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
     protected abstract void handleDetailMsg(android.os.Message msg);
 
 
+
     @SuppressWarnings("unchecked")
     protected <T extends View> T getViewById(int id) {
         return (T) findViewById(id);
@@ -205,17 +215,40 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
         }
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
+        if(Constant.ISCUT){
+            String uuid = getSharedPreferences(Constant.DEFAULT_SP_NAME,0 ).getString(Constant.SP_USER_UUID,"");
+            CMEHttpClientUsage.getInstanse().doLoginIn(uuid,new JsonHttpResponseHandler(){
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                    Log.d("sgqTest", "onSuccess: 又登录了");
+                    try {
+                        int state = response.getInt("state");
 
-        mBroadcastReceiver.startWatch(this);
-
-        if(cn.incongress.continuestudyeducation.utils.StringUtils.isEmpty(getSPValue(Constant.SP_USER_UUID)) && mSharedPreference.getBoolean(Constant.SP_IS_LOG_OUT, false)){
-            SimpleDialogFragment.createBuilder(this, getSupportFragmentManager()).
-                    setTitle(R.string.dialog_title).setMessage(getString(R.string.logout_tips)).
-                    setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).setRequestCode(200).show();
+                        if(state == 1) {
+                            final String userUuid = response.getString("userUuId");
+                            setSPValue(Constant.SP_USER_UUID, userUuid);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Constant.ISCUT = false;
+                }
+            });
         }
+//        mBroadcastReceiver.startWatch(this,getSPValue(Constant.SP_USER_UUID));
+
+//        if(cn.incongress.continuestudyeducation.utils.StringUtils.isEmpty(getSPValue(Constant.SP_USER_UUID)) && mSharedPreference.getBoolean(Constant.SP_IS_LOG_OUT, false)){
+//            SimpleDialogFragment.createBuilder(this, getSupportFragmentManager()).
+//                    setTitle(R.string.dialog_title).setMessage(getString(R.string.logout_tips)).
+//                    setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).setRequestCode(200).show();
+//        }
     }
 
     @Override
@@ -243,5 +276,17 @@ public abstract  class BaseActivity extends AppCompatActivity implements ISimple
             startActivity(new Intent(mContext, LoginActivity.class));
             mSharedPreference.edit().putBoolean(Constant.SP_IS_LOG_OUT,false).commit();
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        // TODO Auto-generated method stub
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(getCurrentFocus()!=null && getCurrentFocus().getWindowToken()!=null){
+                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+        return super.onTouchEvent(event);
     }
 }

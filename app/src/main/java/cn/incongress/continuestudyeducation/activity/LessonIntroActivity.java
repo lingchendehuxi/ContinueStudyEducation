@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,7 +41,7 @@ public class LessonIntroActivity extends BaseActivity {
     private static final int LOAD_DATA_NO_DATA = 0x0002;
     private static final int LOAD_DATA_ERROR = 0x0003;
 
-    private TextView mTvLessonTitle, mTvLessonIntro, mTvLeftTime;
+    private TextView mTvLessonTitle, mTvLessonIntro, mTvLeftTime,mTvSize,mTvPlate;
     private ListView mLvTeachers;
     private LessonTeacherAdapter mAdapter;
     private SwipeRefreshLayout mRefreshLayout;
@@ -55,14 +56,14 @@ public class LessonIntroActivity extends BaseActivity {
 
     @Override
     protected void initializeViews(Bundle savedInstanceState) {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        ((TextView)getViewById(R.id.tv_title)).setText(R.string.lession_introduction);
+        ((TextView)getViewById(R.id.home_title)).setText(R.string.lession_introduction);
 
+        ((ImageView)getViewById(R.id.home_title_back)).setVisibility(View.VISIBLE);
         mTvLessonTitle = getViewById(R.id.tv_lesson_title);
         mTvLessonIntro = getViewById(R.id.tv_lesson_info);
         mTvLeftTime = getViewById(R.id.tv_left_time);
+        mTvSize = getViewById(R.id.teacherSize);
+        mTvPlate = getViewById(R.id.tv_lesson_plate);
         mLvTeachers = getViewById(R.id.lv_teachers);
         mLvTeachers.setEmptyView(findViewById(R.id.tv_no_data));
         mRefreshLayout = getViewById(R.id.refresh_layout);
@@ -75,7 +76,7 @@ public class LessonIntroActivity extends BaseActivity {
                 if (NetWorkUtils.getNetworkType(mContext) == -1) {
                     SimpleDialogFragment.createBuilder(mContext, getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.network_not_enbale).setPositiveButtonText(R.string.positive_button).show();
                 } else {
-                    CMEHttpClientUsage.getInstanse().doGetCourseInfo(getSPValue(Constant.SP_CUUID), new JsonHttpResponseHandler() {
+                    CMEHttpClientUsage.getInstanse().doGetCourseInfo(getIntent().getStringExtra("cuuId"), new JsonHttpResponseHandler() {
                         @Override
                         public void onStart() {
                             super.onStart();
@@ -121,27 +122,21 @@ public class LessonIntroActivity extends BaseActivity {
         mLvTeachers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TeacherArrayBean bean = mInfoBean.getTeacherArray().get(position);
+                LessonInfoBean.TeacherArrayBean bean = mInfoBean.getTeacherArray().get(position);
                 TeacherInfoActivity.startTeacherInfoActivity(mContext, bean.getTeacherName(), bean.getTeacherRemark(), bean.getTeacherUrl());
             }
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
+   public void back(View view){
+       LessonIntroActivity.this.finish();
+   }
     @Override
     protected void initializeData(Bundle savedInstanceState) {
         if (NetWorkUtils.getNetworkType(mContext) == -1) {
             SimpleDialogFragment.createBuilder(mContext, getSupportFragmentManager()).setTitle(R.string.dialog_title).setMessage(R.string.network_not_enbale).setPositiveButtonText(R.string.positive_button).show();
         } else {
-            CMEHttpClientUsage.getInstanse().doGetCourseInfo(getSPValue(Constant.SP_CUUID), new JsonHttpResponseHandler() {
+            CMEHttpClientUsage.getInstanse().doGetCourseInfo(getIntent().getStringExtra("cuuId"), new JsonHttpResponseHandler() {
                 @Override
                 public void onStart() {
                     super.onStart();
@@ -188,8 +183,13 @@ public class LessonIntroActivity extends BaseActivity {
             LogUtils.i(TAG, mInfoBean.toString());
             mTvLessonTitle.setText(mInfoBean.getCourseName());
             mTvLessonIntro.setText(mInfoBean.getCourseRemark());
-            mTvLeftTime.setText(mInfoBean.getHasTime());
-
+            mTvLeftTime.setText(mInfoBean.getHasTimeStr());
+            mTvSize.setText(mContext.getString(R.string.teacher_intro,mInfoBean.getTeacherCount()+""));
+            String plate = mInfoBean.getPlateArray().get(0).getPlateName();
+            for (int i = 1;i<mInfoBean.getPlateArray().size();i++){
+                plate = plate+"\n"+mInfoBean.getPlateArray().get(i).getPlateName();
+            }
+            mTvPlate.setText(plate);
             mAdapter = new LessonTeacherAdapter(mContext, mInfoBean.getTeacherArray());
             mLvTeachers.setAdapter(mAdapter);
 

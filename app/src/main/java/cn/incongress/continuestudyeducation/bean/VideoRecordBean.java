@@ -6,8 +6,6 @@ package cn.incongress.continuestudyeducation.bean;
 public class VideoRecordBean {
     private String cwUuid;
     private String userUuid;
-    private int isFinish;
-    private int isUploadSuccess;
 
     public String getCwUuid() {
         return cwUuid;
@@ -25,27 +23,9 @@ public class VideoRecordBean {
         this.userUuid = userUuid;
     }
 
-    public int getIsUploadSuccess() {
-        return isUploadSuccess;
-    }
-
-    public void setIsUploadSuccess(int isUploadSuccess) {
-        this.isUploadSuccess = isUploadSuccess;
-    }
-
-    public int getIsFinish() {
-        return isFinish;
-    }
-
-    public void setIsFinish(int isFinish) {
-        this.isFinish = isFinish;
-    }
-
-    public VideoRecordBean(String cwUuid, String userUuid, int isFinish, int isUploadSuccess) {
+    public VideoRecordBean(String cwUuid, String userUuid) {
         this.cwUuid = cwUuid;
         this.userUuid = userUuid;
-        this.isFinish = isFinish;
-        this.isUploadSuccess = isUploadSuccess;
     }
 
     public VideoRecordBean() {

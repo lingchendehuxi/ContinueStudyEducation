@@ -6,7 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
                 mRecyclerView.setVisibility(View.VISIBLE);
             }
 
-            adapter = new ListAdapterHolder(mCourseBean.getPlateArray());
+            adapter = new ListAdapterHolder(null,getActivity());
             mRecyclerView.setAdapter(adapter);
             mRecyclerView.setHasFixedSize(true);
 
@@ -81,32 +81,34 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
                 @Override
                 public void onItemClick(View v, int position) {
                     //先判断是否可以点击
-                    if(mIsCourseClickable) {
-                        PlateArrayBean bean =  mCourseBean.getPlateArray().get(position);
-                        PlateDetailActivity.startPlateDetailActivity(getActivity(),bean.getPuuId());
-                    }else {
-                        SimpleDialogFragment.createBuilder(getActivity(), getFragmentManager()).
-                                setTitle(R.string.dialog_title).setMessage(mCourseBean.getcRemark()).
-                                setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).show();
-                    }
+                    PlateArrayBean bean =  mCourseBean.getPlateArray().get(position);
+                    //PlateDetailActivity.startPlateDetailActivity(getActivity(),bean.getPuuId());
+//                    if(mIsCourseClickable) {
+//                        PlateArrayBean bean =  mCourseBean.getPlateArray().get(position);
+//                        PlateDetailActivity.startPlateDetailActivity(getActivity(),bean.getPuuId());
+//                    }else {
+//                        SimpleDialogFragment.createBuilder(getActivity(), getFragmentManager()).
+//                                setTitle(R.string.dialog_title).setMessage(mCourseBean.getcRemark()).
+//                                setPositiveButtonText(R.string.positive_button).setCancelableOnTouchOutside(false).show();
+//                    }
                 }
             });
+
             setSPValue(Constant.SP_CUUID, mCourseBean.getCuuId());
             mRefreshLayout.setRefreshing(false);
 
             String situation = "";
             if(mCourseBean.getGetCirtification() == 0) {
                 situation = "课程学习";
-                mTvSituationContent.setText(getString(R.string.situation1,mCourseBean.getPoint()));
+                mTvSituationContent.setText(getString(R.string.situation1));
             }else if(mCourseBean.getGetCirtification() == 1) {
                 situation = "证书审核中";
-                mTvSituationContent.setText(getString(R.string.situation2,mCourseBean.getPoint()));
+                mTvSituationContent.setText(getString(R.string.situation2,mCourseBean.getPoint() + ""));
             }else if(mCourseBean.getGetCirtification() == 2) {
                 situation = "审核通过";
-                mTvSituationContent.setText(getString(R.string.situation3,mCourseBean.getPoint()));
+                mTvSituationContent.setText(getString(R.string.situation3,mCourseBean.getPoint() + ""));
             }
             mTvSituation.setText(situation);
-
             mTvTitle.setText(mCourseBean.getCourseName());
 
             //课程还未开始，或已经结束
@@ -139,12 +141,11 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
 		View view = inflater.inflate(R.layout.fragment_home, null);
         mLlTopInfo = (LinearLayout) view.findViewById(R.id.ll_top_info);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.video_list);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.video_list);
         mIvNoDataTip = (ImageView) view.findViewById(R.id.iv_no_data_tips);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         mTvSituation = (TextView) view.findViewById(R.id.tv_situation);
         mTvSituationContent = (TextView) view.findViewById(R.id.tv_situation_content);
-        mTvTitle = (TextView) getActivity().findViewById(R.id.tv_title);
+        mTvTitle = (TextView) getActivity().findViewById(R.id.home_title);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -165,10 +166,12 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
      * 初始化页面数据
      */
     private void initDatas() {
+
         CMEHttpClientUsage.getInstanse().doGetCourse(Constant.PROJECT_ID, getSPValue(Constant.SP_USER_UUID), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
+                Log.e("GYW",response.toString());
+                /*try {
                     int status = response.getInt("state");
                     if (status == 1) {
                         Gson gson = new Gson();
@@ -186,7 +189,7 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
                 } catch (Exception e) {
                     LogUtils.e(TAG, "[exception]:" + e.toString(), null);
                        Toast.makeText(getActivity(), "Parse Data Error", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
 
             @Override
@@ -206,8 +209,6 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override
@@ -226,7 +227,5 @@ public class HomeFragment extends BaseFragment implements ISimpleDialogListener 
     public void onNeutralButtonClicked(int requestCode) {
         Toast.makeText(getActivity(), "Neutral clicked", Toast.LENGTH_SHORT).show();
     }
-
-
 
 }

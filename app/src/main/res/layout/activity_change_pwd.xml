@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <include layout="@layout/include_toolbar"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/home_title" />
 
     <RelativeLayout
-        android:padding="@dimen/layout_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding">
 
         <cn.incongress.continuestudyeducation.uis.ClearEditText
-            android:layout_width="match_parent"
             android:id="@+id/et_origin_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/changepwd_orgin_pwd"
             android:password="true"
-            android:textSize="@dimen/text_size_media"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/text_size_media" />
 
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:padding="@dimen/layout_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding">
+
         <cn.incongress.continuestudyeducation.uis.ClearEditText
-            android:layout_width="match_parent"
             android:id="@+id/et_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/changepwd_new_pwd"
             android:password="true"
-            android:textSize="@dimen/text_size_media"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/text_size_media" />
 
     </RelativeLayout>
 
 
     <RelativeLayout
-        android:padding="@dimen/layout_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding">
 
         <cn.incongress.continuestudyeducation.uis.ClearEditText
-            android:layout_width="match_parent"
             android:id="@+id/et_confirm_new_pwd"
-            android:password="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/changepwd_confirm_new_pwd"
-            android:textSize="@dimen/text_size_media"
-            android:layout_height="wrap_content" />
+            android:password="true"
+            android:textSize="@dimen/text_size_media" />
 
     </RelativeLayout>
-
 
 
 </LinearLayout>
